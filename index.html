@@ -180,11 +180,11 @@
       <!-- Numerology Descriptions Accordion Item -->
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingNumerology">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNumerology" aria-expanded="true" aria-controls="collapseNumerology">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNumerology" aria-expanded="true" aria-controls="collapseNumerology">
             <strong>Numerology Descriptions</strong>
           </button>
         </h2>
-        <div id="collapseNumerology" class="accordion-collapse collapse show" aria-labelledby="headingNumerology" data-bs-parent="#accordionExample">
+        <div id="collapseNumerology" class="accordion-collapse collapse" aria-labelledby="headingNumerology" data-bs-parent="#accordionExample">
           <div class="accordion-body">
             <p><strong>1 (Sun):</strong> Leadership, creativity, and energy.</p>
             <p><strong>2 (Moon):</strong> Balance, emotion, and intuition.</p>
@@ -370,11 +370,9 @@
         cellDiv.className = 'loshu-cell';
         cellDiv.textContent = cellArray.length > 0 ? cellArray.join(' ') : '';
         // Highlight cell only if ALL numbers from a set are present in that cell
-        const hasGreen = greenRequired.every(num => cellArray.includes(num));
-        const hasBlue = blueRequired.every(num => cellArray.includes(num));
-        if (hasGreen) {
+        if (greenRequired.every(num => numbers.includes(num)) &&  cellArray.some(digit => greenRequired.includes(digit))) {
           cellDiv.classList.add('bg-success', 'text-white');
-        } else if (hasBlue) {
+        } else if (blueRequired.every(num => numbers.includes(num)) &&  cellArray.some(digit => blueRequired.includes(digit))) {
           cellDiv.classList.add('bg-primary', 'text-white');
         }
         loshuGridDiv.appendChild(cellDiv);
