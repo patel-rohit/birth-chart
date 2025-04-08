@@ -6,20 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Generate Birth Chart Free</title>
   <meta name="description" content="Generate Birth Chart Free: Create your personalized Loshu grid numerology chart and compute your Driver, Conductor, Kuva, and Name Number using your name, birth date, and gender.">
-<meta name="keywords" content="Birth Chart, Loshu Grid, Numerology, Driver, Conductor, Kuva, Name Number, Free Birth Chart">
-<meta name="author" content="Rohit Patel, Ahmedabad">
+  <meta name="keywords" content="Birth Chart, Loshu Grid, Numerology, Driver, Conductor, Kuva, Name Number, Free Birth Chart">
+  <meta name="author" content="Rohit Patel, Ahmedabad">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PHR4KPGYPV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-PHR4KPGYPV');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PHR4KPGYPV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PHR4KPGYPV');
+  </script>
   <style>
+    html {
+  scroll-behavior: smooth;
+}
+.highlight-section {
+  animation: highlightFlash 2s ease-in-out;
+}
+
+@keyframes highlightFlash {
+  0%   { background-color: #fff3cd; }
+  50%  { background-color: #ffeeba; }
+  100% { background-color: transparent; }
+}
+
     body {
       background-color: #f8f9fa;
     }
@@ -47,6 +58,8 @@
       font-size: 20px;
       line-height: 80px;
       color: #212529;
+      cursor: pointer;
+      position: relative;
     }
     @media (max-width: 576px) {
       .loshu-grid {
@@ -75,20 +88,27 @@
     .number {
       font-weight: bold;
     }
+    .loshu-cell:hover {
+  background-color: #e9f5ff;
+  border-color: #0d6efd;
+  transition: 0.2s ease;
+  box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+}
   </style>
 </head>
 <body> 
-  <!-- End Google Tag Manager (noscript) -->
 <div class="container py-4">
   <!-- Main Card for Birth Chart Form and Grid -->
-  <div class="card mx-auto p-4" style="max-width: 600px;">
+  <div class="card mx-auto p-4" style="max-width: 900px;">
     <h2 class="text-center mb-4">Generate Birth Chart Free</h2>
-
+    <div class="text-center mb-3">
+      <a href="#historyContainer" class="btn btn-outline-secondary btn-sm" style="font-size: 11px;">⬇ View Search History</a>
+    </div>
     <form id="birthForm" class="row g-3">
       <!-- Name input -->
       <div class="col-12">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" id="name" class="form-control" required placeholder="Enter your name">
+        <label for="name" class="form-label">Name (First + Last)</label>
+        <input type="text" id="name" class="form-control" required placeholder="e.g. Rohit Patel">
       </div>
       <!-- Day dropdown -->
       <div class="col-4">
@@ -147,24 +167,24 @@
         </div>
       </div>
       <div class="col-12">
-        <button type="submit" class="btn btn-primary w-100">Generate Birth Chart</button>
+        <button type="submit" class="btn btn-primary w-100">Generate Lo Shu Grid</button>
       </div>
     </form>
     
-    <!-- Loshu Grid -->
+    <!-- Loshu Grid (rendered dynamically) -->
     <div class="loshu-grid" id="loshuGrid"></div>
     
     <!-- Computed Values Row -->
     <div class="row text-center mt-3">
       <div class="col">
-        <strong>Driver:</strong> <span id="driverLabel"></span>
+        <strong>Personality:</strong> <span id="driverLabel"></span>
       </div>
       <div class="col">
-        <strong>Conductor:</strong> <span id="conductorLabel"></span>
+        <strong>Destiny:</strong> <span id="conductorLabel"></span>
       </div>
       <div class="col">
-        <strong>Kuva:</strong> <span id="kuvaLabel"></span>
-      </div>
+        <strong>Kua:</strong> <span id="kuvaLabel"></span>
+      </div> 
     </div>
     <!-- Name Number Row -->
     <div class="row text-center mt-3">
@@ -173,65 +193,95 @@
       </div>
     </div>
   </div>
-
-
-    
   
   <!-- Accordion for Numerology Descriptions and Mapping -->
-  <div class="card mx-auto p-4 readonly-table" style="max-width: 600px; margin-top: 20px;">
- 
-    <div class="accordion" id="accordionExample">
-      <!-- Numerology Descriptions Accordion Item -->
+  <div class="card mx-auto p-4 readonly-table " style="max-width: 900px; margin-top: 20px;">
+    <div class="accordion" id="accordionExample"> 
+    
+      <!-- Numerology Descriptions Accordion Item with Tooltips -->
       <div class="accordion-item">
-        <h2 class="accordion-header" id="headingStaticGrid">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStaticGrid" aria-expanded="true" aria-controls="collapseStaticGrid">
-            Standard Loshu Grid 
+        <h2 class="accordion-header" id="headingGridNumbers">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGridNumbers" aria-expanded="false" aria-controls="collapseGridNumbers">
+            Lo Shu Grid Numbers: Predictions, Planes & Arrows (1–9)
           </button>
         </h2>
-        <div id="collapseStaticGrid" class="accordion-collapse collapse show" aria-labelledby="headingStaticGrid" data-bs-parent="#loshuAccordion">
-          <div class="accordion-body">
-            <div class="card mx-auto p-4 readonly-table" style="max-width: 600px;">
-              <div class="loshu-grid">
-                <div class="loshu-cell" data-bs-toggle="tooltip" title="Rahu - રાહુ">4</div>
-                <div class="loshu-cell" data-bs-toggle="tooltip" title="Mars - મંગળ">9</div>
-                <div class="loshu-cell" data-bs-toggle="tooltip" title="Moon - ચંદ્ર">2</div>
-                <div class="loshu-cell" data-bs-toggle="tooltip" title="Jupiter - ગુરુ">3</div>
-                <div class="loshu-cell" data-bs-toggle="tooltip" title="Mercury - બુધ">5</div>
-                <div class="loshu-cell" data-bs-toggle="tooltip" title="Ketu - કેतु">7</div>
-                <div class="loshu-cell" data-bs-toggle="tooltip" title="Saturn - શનિ">8</div>
-                <div class="loshu-cell" data-bs-toggle="tooltip" title="Sun - સૂર્ય">1</div>
-                <div class="loshu-cell" data-bs-toggle="tooltip" title="Venus - શુક્ર">6</div>
-              </div>
-            </div>
+        <div id="collapseGridNumbers" class="accordion-collapse collapse" aria-labelledby="headingGridNumbers" data-bs-parent="#accordionExample">
+          <div class="accordion-body" style="max-height: 600px; overflow-y: auto;">
+      
+            <h5>Characteristics & Predictions (1–9)</h5>
+            <ul class="list-unstyled">
+              <li><strong>1:</strong> Leader, confident, idea-starter. <em>Likely to achieve big dreams and take charge.</em></li>
+              <li><strong>2:</strong> Kind, team player, nurturing. <em>Brings harmony and success in relationships.</em></li>
+              <li><strong>3:</strong> Creative, joyful, expressive. <em>Positive and opens doors to exciting opportunities.</em></li>
+              <li><strong>4:</strong> Practical, reliable, disciplined. <em>Great for planning, order, and structured success.</em></li>
+              <li><strong>5:</strong> Adventurous, flexible, freedom-loving. <em>Seeks variety, open to change and personal growth.</em></li>
+              <li><strong>6:</strong> Responsible, caring, family-oriented. <em>Strong provider and community supporter.</em></li>
+              <li><strong>7:</strong> Wise, introspective, spiritual. <em>Seeks truth and deeper meaning in life.</em></li>
+              <li><strong>8:</strong> Ambitious, focused, leadership skills. <em>Aims for wealth and authority.</em></li>
+              <li><strong>9:</strong> Compassionate, idealistic, energetic. <em>Drives change through kindness and service.</em></li>
+            </ul>
+      
+            <hr>
+      
+            <h5>Key Benefits of the Lo Shu Grid Calculator</h5>
+            <ul>
+              <li>Reveals hidden personality traits and strengths.</li>
+              <li>Identifies challenges and career opportunities.</li>
+              <li>Provides compatibility and relationship insights.</li>
+              <li>Guides personal growth and energy balancing.</li>
+              <li>Highlights missing numbers and their remedies.</li>
+              <li>Quick and easy tool for personalized numerology.</li>
+            </ul>
+      
+            <hr>
+      
+            <h5>Planes in the Lo Shu Grid</h5>
+            <p>The Lo Shu Grid includes rows, columns, and diagonals called <strong>planes</strong>. Each plane reflects a different aspect of your personality:</p>
+            <ul>
+              <li><strong>Diagonal:</strong> 2-5-8 (Silver Yog), 4-5-6 (Golden Yog)</li>
+              <li><strong>Vertical:</strong> 4-3-8 (Thought), 9-5-1 (Will), 2-7-6 (Action)</li>
+              <li><strong>Horizontal:</strong> 4-9-2 (Mind), 3-5-7 (Emotional), 8-1-6 (Practical)</li>
+            </ul>
+      
+            <hr>
+      
+            <h5>Present Arrows in Lo Shu Grid</h5>
+            <ul>
+              <li><strong>2-5-8:</strong> Strong willpower, great under pressure, real estate potential.</li>
+              <li><strong>4-5-6:</strong> Positive energy, gentle, respectful, grows into a strong personality.</li>
+              <li><strong>4-9-2:</strong> Sharp memory, logical, excellent planner, honest.</li>
+              <li><strong>3-5-7:</strong> Emotionally wise, kind-hearted, spiritually inclined.</li>
+              <li><strong>8-1-6:</strong> Very practical, business-savvy, financially focused.</li>
+              <li><strong>4-3-8:</strong> Strategic thinker, clear vision, goal-oriented.</li>
+              <li><strong>9-5-1:</strong> Strong-willed, passionate, assertive in communication.</li>
+              <li><strong>2-7-6:</strong> Active, physically energetic, completes tasks well.</li>
+            </ul>
+      
+            <hr>
+      
+            <h5>Missing Arrows and Their Effects</h5>
+            <ul>
+              <li><strong>2-5-8:</strong> Prone to mistakes; needs to pause and think before acting.</li>
+              <li><strong>4-5-6:</strong> Struggles with self-doubt and fear of failure.</li>
+              <li><strong>4-9-2:</strong> Weak memory, especially later in life.</li>
+              <li><strong>3-5-7:</strong> Feels lonely even in crowds; lacks inner motivation.</li>
+              <li><strong>8-1-6:</strong> Dreams of success without effort; lacks practicality.</li>
+              <li><strong>4-3-8:</strong> Confused thinking, poor decision-making.</li>
+              <li><strong>9-5-1:</strong> Easily influenced, lacks firm decisions, approval-seeking.</li>
+              <li><strong>2-7-6:</strong> Misses opportunities due to hesitation and fear of risk.</li>
+            </ul>
+      
+            <p class="mt-3"><em>The Lo Shu Grid is like a mirror of your inner world—use it to discover your strengths, balance your life, and unlock your full potential!</em></p>
           </div>
         </div>
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingNumerology">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNumerology" aria-expanded="true" aria-controls="collapseNumerology">
-            <strong>Numerology Descriptions</strong>
-          </button>
-        </h2>
-        <div id="collapseNumerology" class="accordion-collapse collapse" aria-labelledby="headingNumerology" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <p><strong>1 (Sun - સૂર્ય):</strong> Leadership, creativity, and energy.</p>
-            <p><strong>2 (Moon - ચંદ્ર):</strong> Balance, emotion, and intuition.</p>
-            <p><strong>3 (Jupiter - ગુરુ):</strong> Growth, wisdom, and optimism.</p>
-            <p><strong>4 (Rahu - રાહુ):</strong> Ambition and innovative thinking.</p>
-            <p><strong>5 (Mercury - બુધ):</strong> Communication, versatility, and quick thinking.</p>
-            <p><strong>6 (Venus - શુક્ર):</strong> Harmony, love, and beauty.</p>
-            <p><strong>7 (Ketu - કેतु):</strong> Spirituality and introspection.</p>
-            <p><strong>8 (Saturn - શનિ):</strong> Discipline, structure, and strength.</p>
-            <p><strong>9 (Mars - મંગળ):</strong> Passion, courage, and energy.</p>
-          </div>
-        </div>
-      </div>
+      
       
       <!-- Alphabet to Planet Mapping Accordion Item -->
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingMapping">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMapping" aria-expanded="false" aria-controls="collapseMapping">
-            <strong>Alphabet to Planet Mapping</strong>
+            Alphabet to Planet Mapping 
           </button>
         </h2>
         <div id="collapseMapping" class="accordion-collapse collapse" aria-labelledby="headingMapping" data-bs-parent="#accordionExample">
@@ -245,47 +295,62 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td>A I J Q Y</td><td>1</td><td>SUN</td></tr>
-                <tr><td>B K R</td><td>2</td><td>MOON</td></tr>
-                <tr><td>C G L S</td><td>3</td><td>JUPITER</td></tr>
-                <tr><td>D M T</td><td>4</td><td>RAHU</td></tr>
-                <tr><td>E H N X</td><td>5</td><td>MERCURY</td></tr>
-                <tr><td>U V W</td><td>6</td><td>VENUS</td></tr>
-                <tr><td>O Z</td><td>7</td><td>KETU</td></tr>
-                <tr><td>F P</td><td>8</td><td>SATURN</td></tr>
-                <tr><td></td><td>9</td><td>MARS</td></tr>
+                <tr><td>A I J Q Y</td><td>1</td><td>SUN - સૂર્ય</td></tr>
+                <tr><td>B K R</td><td>2</td><td>MOON - ચંદ્ર</td></tr>
+                <tr><td>C G L S</td><td>3</td><td>JUPITER - ગુરુ</td></tr>
+                <tr><td>D M T</td><td>4</td><td>RAHU - રાહુ</td></tr>
+                <tr><td>E H N X</td><td>5</td><td>MERCURY - બુધ</td></tr>
+                <tr><td>U V W</td><td>6</td><td>VENUS - શુક્ર</td></tr>
+                <tr><td>O Z</td><td>7</td><td>KETU - કેतु</td></tr>
+                <tr><td>F P</td><td>8</td><td>SATURN - શનિ</td></tr>
+                <tr><td></td><td>9</td><td>MARS - મંગળ</td></tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
 
-
-
     </div>
   </div>
   
   <!-- Search History Section -->
-  <div class="card mx-auto p-4 readonly-table" style="max-width: 600px; margin-top: 20px;" id="historyContainer">
+  <div class="card mx-auto p-4 readonly-table" style="max-width: 900px; margin-top: 20px;" id="historyContainer">
     <h4 class="text-center">Search History</h4>
     <div id="historyList"></div>
   </div>
   
 </div>
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+         <h5 class="modal-title" id="detailModalLabel"></h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="detailModalBody">
+         <!-- Description will be inserted here -->
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Bootstrap 5 Bundle JS (includes Popper) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-      tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-        new bootstrap.Tooltip(tooltipTriggerEl, {
-          trigger: 'hover focus click'
-        });
-      });
+  // Initialize Bootstrap tooltips (trigger on hover, focus, click)
+  document.addEventListener('DOMContentLoaded', function () {
+    initTolltip();
+  });
+  function initTolltip(){
+    const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(tooltipTriggerEl => {
+      new bootstrap.Tooltip(tooltipTriggerEl);
     });
 
-  // Populate year dropdown dynamically
+  }
+
+  // Populate year dropdown dynamically from (currentYear - 100) to currentYear
   document.addEventListener("DOMContentLoaded", function() {
     const yearSelect = document.getElementById("year");
     const currentYear = new Date().getFullYear();
@@ -309,14 +374,8 @@
   }
   
   // Compute Name Number from the provided name using the mapping:
-  // A, I, J, Q, Y => 1
-  // B, K, R => 2
-  // C, G, L, S => 3
-  // D, M, T => 4
-  // E, H, N, X => 5
-  // U, V, W => 6
-  // O, Z => 7
-  // F, P => 8
+  // A, I, J, Q, Y => 1; B, K, R => 2; C, G, L, S => 3; D, M, T => 4;
+  // E, H, N, X => 5; U, V, W => 6; O, Z => 7; F, P => 8.
   function computeNameNumber(name) {
     name = name.toUpperCase();
     let sum = 0;
@@ -367,7 +426,32 @@
   const kuvaLabel = document.getElementById('kuvaLabel');
   const nameNumberLabel = document.getElementById('nameNumberLabel');
   const historyListDiv = document.getElementById('historyList');
-  
+
+  function showPopup(expectedDigit) {
+  // Define detailed descriptions for each expected digit
+const descriptions = {
+  1: `1 (Sun - સૂર્ય)<br>1 represents career, success, business, communication, and being yourself. It’s linked to the water element, kidneys and ears, colors black and dark blue, the Sun, and the middle son. Points north and is good for career.<br><br>૧ (સૂર્ય) કારકિર્દી, સફળતા, વ્યવસાય, સંચાર અને પોતાની જાત તરીકે જીવવાનું દર્શાવે છે. તે જળ તત્વ, ગુર્દા અને કાન, કાળા અને ગાઢ વાદળી રંગો, સૂર્ય અને મધ્યમ પુત્ર સાથે સંબંધિત છે. ઉત્તર દિશામાં છે અને કારકિર્દી માટે શુભ છે.`,
+  2: `2 (Moon - ચંદ્ર)<br>2 stands for love, marriage, relationships, emotions, and motherly care. It’s connected to the earth element, abdomen, and the colors pink, red, and white, representing the Moon, the mother, and the southwest direction.<br><br>૨ (ચંદ્ર) પ્રેમ, લગ્ન, સંબંધો, ભાવનાઓ અને માતૃત્વની દેખરેખનું પ્રતિનિધિત્વ કરે છે. તે પૃથ્વી તત્વ, પેટ અને ગુલાબી, લાલ અને સફેદ રંગો સાથે જોડાયેલું છે. ચંદ્ર, માતા અને દક્ષિણ પશ્ચિમ દિશાને દર્શાવે છે.`,
+  3: `3 (Jupiter - ગુરુ)<br>3 is about health, planning, imagination, family, and wisdom. It’s tied to hard wood, feet, knees, and ankles, and is associated with green and blue colors, Jupiter, the oldest son, and the east.<br><br>૩ (ગુરુ) આરોગ્ય, યોજના, કલ્પના, પરિવાર અને જ્ઞાન માટે છે. તે કઠણ લાકડું, પગ, ઘૂંટણ અને પગની કાંસળી સાથે જોડાયેલું છે. લીલા અને વાદળી રંગો, ગુરુ, મોટો પુત્ર અને પૂર્વ દિશા સાથે સંકળાયેલું છે.`,
+  4: `4 (Rahu - રાહુ)<br>4 relates to money, discipline, confidence, and power. It’s linked to soft wood, the liver, and the thicker parts of the body, representing Rahu and associated with the southeast.<br><br>૪ (રાહુ) પૈસા, અનુશાસન, આત્મવિશ્વાસ અને શક્તિ સાથે સંબંધિત છે. તે નરમ લાકડું, યકૃત અને શરીરના જાડા ભાગો સાથે જોડાયેલું છે. રાહુનું પ્રતિનિધિત્વ કરે છે અને દક્ષિણ પૂર્વ દિશા સાથે સંકળાયેલું છે.`,
+  5: `5 (Mercury - બુધ)<br>5 is for balance, stability, fortune, freedom, and mental health. It’s connected to the earth element, internal organs, and is linked with Mercury, representing the whole family and the center.<br><br>૫ (બુધ) સંતુલન, સ્થિરતા, નસીબ, સ્વતંત્રતા અને માનસિક આરોગ્ય માટે છે. તે પૃથ્વી તત્વ અને આંતરિક અંગો સાથે જોડાયેલું છે. બુધ, આખા પરિવાર અને કેન્દ્રનું પ્રતિનિધિત્વ કરે છે.`,
+  6: `6 (Venus - શુક્ર)<br>6 represents friends, travel, new beginnings, and spirituality. It’s tied to hard metal, the head, and associated with gray, black, and white colors, as well as Venus, the father, and the northwest.<br><br>૬ (શુક્ર) મિત્રો, મુસાફરી, નવા શરૂઆત અને આધ્યાત્મિકતાનું પ્રતિનિધિત્વ કરે છે. તે કઠણ ધાતુ, માથું અને ભૂખા, કાળા અને સફેદ રંગો સાથે જોડાયેલું છે. શુક્ર, પિતા અને ઉત્તર પશ્ચિમ દિશાને દર્શાવે છે.`,
+  7: `7 (Ketu - કેતુ)<br>7 focuses on children, creativity, fun, and the future. It’s linked to soft metal, the mouth and lungs, and is associated with white, silver, gray, and copper, representing the youngest daughter and the west.<br><br>૭ (केतુ) બાળકો, સર્જનાત્મકતા, આનંદ અને ભવિષ્ય પર ધ્યાન કેન્દ્રિત કરે છે. તે નરમ ધાતુ, મોઢું અને ફેફસાં સાથે જોડાયેલું છે. સફેદ, ચાંદી, ભૂખા અને તામ્ર રંગો સાથે સંકળાયેલું છે. નાની દીકરી અને પશ્ચિમ દિશાનું પ્રતિનિધિત્વ કરે છે.`,
+  8: `8 (Saturn - શનિ)<br>8 symbolizes knowledge, motivation, being organized, and spiritual growth. It’s related to the earth, hands, body weight, and is tied to blue, black, and green colors, representing Saturn, the youngest son, and the northeast.<br><br>૮ (શનિ) જ્ઞાન, પ્રેરણા, વ્યવસ્થિત હોવું અને આધ્યાત્મિક વૃદ્ધિનું પ્રતીક છે. તે પૃથ્વી, હાથ, શરીરના વજન સાથે સંબંધિત છે. વાદળી, કાળો અને લીલો રંગ શનિ, નાનો પુત્ર અને ઉત્તર પૂર્વ દિશાને દર્શાવે છે.`,
+  9: `9 (Mars - મંગળ)<br>9 stands for fame, reputation, social life, and kindness. It’s associated with fire, the heart, blood, and eyes, linked to the red color, Mars, the middle daughter, and the south.<br><br>૯ (મંગળ) યશ, પ્રતિષ્ઠા, સામાજિક જીવન અને દયાળુતાનું પ્રતિનિધિત્વ કરે છે. તે અગ્નિ, હ્રદય, લોહી અને આંખો સાથે સંકળાયેલું છે. લાલ રંગ, મંગળ, મધ્યમ દીકરી અને દક્ષિણ દિશાનું પ્રતીક છે.`
+};
+
+
+  // Set modal title and body content based on expectedDigit
+  document.getElementById("detailModalLabel").innerHTML = `Details for ${expectedDigit}`;
+  document.getElementById("detailModalBody").innerHTML = descriptions[expectedDigit] || "No description available.";
+
+  // Show the modal using Bootstrap's Modal API
+  const modalElement = document.getElementById("detailModal");
+  const modal = new bootstrap.Modal(modalElement);
+  modal.show();
+}
+
   // LocalStorage helpers
   function loadHistory() {
     const history = localStorage.getItem('birthChartHistory');
@@ -379,7 +463,7 @@
   function generateKey(name, day, month, year, gender) {
     return name.trim().toLowerCase() + "_" + day + "_" + month + "_" + year + "_" + gender;
   }
-  // Save record with Name Number included
+  // Save a record including the Name Number to localStorage
   function saveToLocalStorage(name, day, month, year, gender, driver, conductor, kuva, nameNumber, grid) {
     const history = loadHistory();
     const key = generateKey(name, day, month, year, gender);
@@ -398,27 +482,77 @@
     return grid.flat(2);
   }
   
-  // Render the Loshu grid with cell highlighting based on cell contents
+  // Updated renderGrid: Displays each expected number based on frequency from computed grid.
+  // If a number exists, show it repeated the number of times it occurs.
+  // If missing, show strike-through of the number in a smaller font.
   function renderGrid(grid) {
-    const numbers = extractNumbersFromGrid(grid);
-    const greenRequired = [4, 5, 6];
-    const blueRequired = [2, 5, 8];
-    loshuGridDiv.innerHTML = '';
-    grid.forEach((row) => {
-      row.forEach((cellArray) => {
-        const cellDiv = document.createElement('div');
-        cellDiv.className = 'loshu-cell';
-        cellDiv.textContent = cellArray.length > 0 ? cellArray.join(' ') : '';
-        // Highlight cell only if ALL numbers from a set are present in that cell
-        if (greenRequired.every(num => numbers.includes(num)) &&  cellArray.some(digit => greenRequired.includes(digit))) {
-          cellDiv.classList.add('bg-success', 'text-white');
-        } else if (blueRequired.every(num => numbers.includes(num)) &&  cellArray.some(digit => blueRequired.includes(digit))) {
-          cellDiv.classList.add('bg-primary', 'text-white');
-        }
-        loshuGridDiv.appendChild(cellDiv);
+  const birthDigits = extractNumbersFromGrid(grid);
+  const greenRequired = [4, 5, 6];
+  const blueRequired = [2, 5, 8];
+
+  // Standard 3×3 Loshu arrangement:
+  //   4  9  2
+  //   3  5  7
+  //   8  1  6
+  const cellMap = [
+    [4, 9, 2],
+    [3, 5, 7],
+    [8, 1, 6]
+  ];
+  
+  loshuGridDiv.innerHTML = '';
+  
+  cellMap.forEach(row => {
+    row.forEach(expectedDigit => {
+      const cellDiv = document.createElement('div');
+      cellDiv.className = 'loshu-cell';
+      
+      // Count how many times the expected digit is present
+      const count = birthDigits.filter(num => num === expectedDigit).length;
+      let displayContent = "";
+      if (count > 0) {
+        displayContent = Array(count).fill(expectedDigit).join(' ') + ' <span class="zoom d-none">🔍</span>';
+      } else {
+        displayContent = `<s  class="text-danger">${expectedDigit}</s> <span class="zoom d-none">🔍</span>`;
+      }
+      cellDiv.setAttribute('data-bs-toggle', 'tooltip');
+      cellDiv.setAttribute('title', 'Click to view details');
+
+      cellDiv.innerHTML = displayContent;
+      
+      // Set tooltip title using static mapping
+      const tooltipTitles = {
+        4: "Rahu - રાહુ",
+        9: "Mars - મંગળ",
+        2: "Moon - ચંદ્ર",
+        3: "Jupiter - ગુરુ",
+        5: "Mercury - બુધ",
+        7: "Ketu - કેतु",
+        8: "Saturn - શનિ",
+        1: "Sun - સૂર્ય",
+        6: "Venus - શુક્ર"
+      };
+      cellDiv.title = tooltipTitles[expectedDigit];
+      
+      // Highlight cell if ALL numbers from a set are present in this cell (optional)
+      if (greenRequired.every(num => birthDigits.includes(num)) && greenRequired.includes(expectedDigit)) {
+        cellDiv.classList.add('bg-success', 'text-white');
+      } else if (blueRequired.every(num => birthDigits.includes(num)) && blueRequired.includes(expectedDigit)) {
+        cellDiv.classList.add('bg-primary', 'text-white');
+      }
+      
+      // Add click event to trigger detail popup for this expected digit
+      cellDiv.addEventListener('click', function() {
+        showPopup(expectedDigit);
       });
+      
+      loshuGridDiv.appendChild(cellDiv);
     });
-  }
+  });
+
+  initTolltip();
+}
+
   
   // Render search history in descending order (most recent first)
   function renderHistory() {
@@ -516,7 +650,6 @@
     // Compute the Name Number from the input name
     const nameNumber = computeNameNumber(nameValue);
     
-    // Render the Loshu grid and update computed labels
     renderGrid(loshuGrid);
     driverLabel.textContent = driver;
     conductorLabel.textContent = conductor;
@@ -526,6 +659,19 @@
     // Save record (including nameNumber) to localStorage
     saveToLocalStorage(nameValue, dayValue, monthValue, yearValue, gender, driver, conductor, kuvaCalc, nameNumber, loshuGrid);
   });
+
+  document.querySelector('a[href="#historyContainer"]').addEventListener('click', function (e) {
+  const target = document.getElementById('historyContainer');
+  
+  // Add the highlight class
+  target.classList.add('highlight-section');
+
+  // Remove the class after 2 seconds
+  setTimeout(() => {
+    target.classList.remove('highlight-section');
+  }, 2000);
+});
+
 </script>
 </body>
 </html>
