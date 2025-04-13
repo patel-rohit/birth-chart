@@ -1,46 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <!-- Mobile responsiveness -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Generate Birth Chart Free</title>
-  <meta name="description" content="Generate Birth Chart Free: Create your personalized Loshu grid numerology chart and compute your Driver, Conductor, Kuva, and Name Number using your name, birth date, and gender.">
-  <meta name="keywords" content="Birth Chart, Loshu Grid, Numerology, Driver, Conductor, Kuva, Name Number, Free Birth Chart">
+  <meta name="description"
+    content="Generate Birth Chart Free: Create your personalized Loshu grid numerology chart and compute your Driver, Conductor, Kuva, and Name Number using your name, birth date, and gender.">
+  <meta name="keywords"
+    content="Birth Chart, Loshu Grid, Numerology, Driver, Conductor, Kuva, Name Number, Free Birth Chart">
   <meta name="author" content="Rohit Patel, Ahmedabad">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PHR4KPGYPV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-PHR4KPGYPV');
   </script>
   <style>
-    html {
-  scroll-behavior: smooth;
-}
-.highlight-section {
-  animation: highlightFlash 2s ease-in-out;
-}
+    .missing-remedy {
+      border-left: 5px solid #dc3545;
+      /* Red */
+      background-color: #fff5f5;
+    }
 
-@keyframes highlightFlash {
-  0%   { background-color: #fff3cd; }
-  50%  { background-color: #ffeeba; }
-  100% { background-color: transparent; }
-}
+    .present-remedy {
+      border-left: 5px solid #28a745;
+      /* Green */
+      background-color: #f5fff5;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .highlight-section {
+      animation: highlightFlash 2s ease-in-out;
+    }
+
+    @keyframes highlightFlash {
+      0% {
+        background-color: #fff3cd;
+      }
+
+      50% {
+        background-color: #ffeeba;
+      }
+
+      100% {
+        background-color: transparent;
+      }
+    }
 
     body {
       background-color: #f8f9fa;
     }
+
     label.form-label {
       font-weight: 500 !important;
     }
+
     .card {
       border-radius: 10px;
       border: 1px solid #dee2e6;
     }
+
     .loshu-grid {
       display: grid;
       grid-template-columns: repeat(3, 80px);
@@ -49,6 +76,7 @@
       justify-content: center;
       margin-top: 20px;
     }
+
     .loshu-cell {
       background-color: #ffffff;
       border: 2px solid #ced4da;
@@ -61,16 +89,19 @@
       cursor: pointer;
       position: relative;
     }
+
     @media (max-width: 576px) {
       .loshu-grid {
         grid-template-columns: repeat(3, 60px);
         grid-template-rows: repeat(3, 60px);
       }
+
       .loshu-cell {
         font-size: 16px;
         line-height: 60px;
       }
     }
+
     .readonly-table {
       margin-top: 20px;
       background-color: #fff;
@@ -78,6 +109,7 @@
       border-radius: 5px;
       padding: 10px;
     }
+
     .description {
       background: #fff;
       padding: 15px;
@@ -85,864 +117,999 @@
       border-radius: 5px;
       border: 1px solid #ddd;
     }
+
     .number {
       font-weight: bold;
     }
+
     .loshu-cell:hover {
-  background-color: #e9f5ff;
-  border-color: #0d6efd;
-  transition: 0.2s ease;
-  box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
-}
+      background-color: #e9f5ff;
+      border-color: #0d6efd;
+      transition: 0.2s ease;
+      box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+    }
   </style>
 </head>
-<body> 
-<div class="container py-4">
-  <!-- Main Card for Birth Chart Form and Grid -->
-  <div class="card mx-auto p-4" style="max-width: 900px;">
-    <h2 class="text-center mb-4">Generate Birth Chart Free</h2>
-    <div class="text-center mb-3">
-      <a href="#historyContainer" class="btn btn-outline-secondary btn-sm" style="font-size: 11px;">⬇ View Search History</a>
-    </div>
-    <form id="birthForm" class="row g-3">
-      <!-- Name input -->
-      <div class="col-12">
-        <label for="name" class="form-label">Name (First + Last)</label>
-        <input type="text" id="name" class="form-control" required placeholder="e.g. Rohit Patel">
+
+<body>
+  <div class="container py-4">
+    <!-- Main Card for Birth Chart Form and Grid -->
+    <div class="card mx-auto p-4" style="max-width: 900px;">
+      <h2 class="text-center mb-4">Generate Birth Chart Free</h2>
+      <div class="text-center mb-3">
+        <a href="#historyContainer" class="btn btn-outline-secondary btn-sm" style="font-size: 11px;">⬇ View Search
+          History</a>
       </div>
-      <!-- Day dropdown -->
-      <div class="col-4">
-        <label for="day" class="form-label">Day</label>
-        <select id="day" class="form-select" required>
-          <option value="">--</option>
-          <option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6</option>
-          <option>7</option><option>8</option><option>9</option>
-          <option>10</option><option>11</option><option>12</option>
-          <option>13</option><option>14</option><option>15</option>
-          <option>16</option><option>17</option><option>18</option>
-          <option>19</option><option>20</option><option>21</option>
-          <option>22</option><option>23</option><option>24</option>
-          <option>25</option><option>26</option><option>27</option>
-          <option>28</option><option>29</option><option>30</option>
-          <option>31</option>
-        </select>
-      </div>
-      <!-- Month dropdown -->
-      <div class="col-4">
-        <label for="month" class="form-label">Month</label>
-        <select id="month" class="form-select" required>
-          <option value="">--</option>
-          <option value="1">January</option>
-          <option value="2">February</option>
-          <option value="3">March</option>
-          <option value="4">April</option>
-          <option value="5">May</option>
-          <option value="6">June</option>
-          <option value="7">July</option>
-          <option value="8">August</option>
-          <option value="9">September</option>
-          <option value="10">October</option>
-          <option value="11">November</option>
-          <option value="12">December</option>
-        </select>
-      </div>
-      <!-- Year dropdown -->
-      <div class="col-4">
-        <label for="year" class="form-label">Year</label>
-        <select id="year" class="form-select" required>
-          <option value="">--</option>
-        </select>
-      </div>
-      <!-- Gender selection -->
-      <div class="col-12">
-        <label class="form-label">Gender</label><br>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
-          <label class="form-check-label" for="male">Male</label>
+      <form id="birthForm" class="row g-3">
+        <!-- Name input -->
+        <div class="col-12">
+          <label for="name" class="form-label">Name (First + Last)</label>
+          <input type="text" id="name" class="form-control" required placeholder="e.g. Rohit Patel">
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
-          <label class="form-check-label" for="female">Female</label>
+        <!-- Day dropdown -->
+        <div class="col-4">
+          <label for="day" class="form-label">Day</label>
+          <select id="day" class="form-select" required>
+            <option value="">--</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>23</option>
+            <option>24</option>
+            <option>25</option>
+            <option>26</option>
+            <option>27</option>
+            <option>28</option>
+            <option>29</option>
+            <option>30</option>
+            <option>31</option>
+          </select>
+        </div>
+        <!-- Month dropdown -->
+        <div class="col-4">
+          <label for="month" class="form-label">Month</label>
+          <select id="month" class="form-select" required>
+            <option value="">--</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+        </div>
+        <!-- Year dropdown -->
+        <div class="col-4">
+          <label for="year" class="form-label">Year</label>
+          <select id="year" class="form-select" required>
+            <option value="">--</option>
+          </select>
+        </div>
+        <!-- Gender selection -->
+        <div class="col-12">
+          <label class="form-label">Gender</label><br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+            <label class="form-check-label" for="male">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+            <label class="form-check-label" for="female">Female</label>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary w-100">Generate Lo Shu Grid</button>
+        </div>
+      </form>
+
+      <!-- Loshu Grid (rendered dynamically) -->
+      <div class="loshu-grid" id="loshuGrid"></div>
+
+      <!-- Computed Values Row -->
+      <div class="row text-center mt-3">
+        <div class="col">
+          <strong>Personality:</strong> <span id="driverLabel"></span>
+        </div>
+        <div class="col">
+          <strong>Destiny:</strong> <span id="conductorLabel"></span>
+        </div>
+        <div class="col">
+          <strong>Kua:</strong> <span id="kuvaLabel"></span>
         </div>
       </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary w-100">Generate Lo Shu Grid</button>
+      <!-- Name Number Row -->
+      <div class="row text-center mt-3">
+        <div class="col">
+          <strong>Name Number:</strong> <span id="nameNumberLabel"></span>
+        </div>
       </div>
-    </form>
-    
-    <!-- Loshu Grid (rendered dynamically) -->
-    <div class="loshu-grid" id="loshuGrid"></div>
-    
-    <!-- Computed Values Row -->
-    <div class="row text-center mt-3">
-      <div class="col">
-        <strong>Personality:</strong> <span id="driverLabel"></span>
-      </div>
-      <div class="col">
-        <strong>Destiny:</strong> <span id="conductorLabel"></span>
-      </div>
-      <div class="col">
-        <strong>Kua:</strong> <span id="kuvaLabel"></span>
-      </div> 
     </div>
-    <!-- Name Number Row -->
-    <div class="row text-center mt-3">
-      <div class="col">
-        <strong>Name Number:</strong> <span id="nameNumberLabel"></span>
+
+
+    <div class="card mx-auto p-4 readonly-table " style="max-width: 900px; margin-top: 20px;">
+      <h3 class="text-center mb-4">Lo Shu Grid Missing Number Remedies (1–9)</h3>
+      <div class="accordion" id="remedyAccordion">
+
+        <!-- Missing Number 1 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+              Missing Number 1 – Sun ☀️ (Leadership &amp; Confidence)
+            </button>
+          </h2>
+          <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1"
+            data-bs-parent="#remedyAccordion" style="">
+            <div class="accordion-body">
+              <p><strong>Problems:</strong> People with missing number 1 often struggle to express themselves and lack
+                leadership qualities. They may avoid taking initiative or have low self-esteem.</p>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Place a water fountain or a picture of flowing water in the <strong>North</strong> of your home to
+                  enhance confidence. <em>(e.g., a small tabletop fountain in your study room)</em></li>
+                <li>Offer water to the Sun and chant <strong>Surya Mantra</strong> daily to increase self-belief.
+                  <em>(e.g., “ॐ घृणिः सूर्याय नमः” during sunrise)</em></li>
+                <li>Incorporate the number 1 in personal items like mobile number or house number to subtly bring its
+                  energy. <em>(e.g., choose phone number ending in 1)</em></li>
+              </ul>
+              <hr>
+              <p><strong>Gujarati:</strong></p>
+              <p><strong>સમસ્યાઓ:</strong> જે લોકોના લોશૂ ગ્રિડમાં નંબર ૧ ગુમ છે, તેઓ પોતાનું વ્યક્તિત્વ વ્યક્ત કરવામાં
+                શંકાસ્પદ હોય છે અને નેતૃત્વ લેતા સંકોચ અનુભવતા હોય છે.</p>
+              <p><strong>ઉપાય:</strong></p>
+              <ul>
+                <li><strong>ઉત્તર</strong> દિશામાં પાણીનો ફાઉન્ટેન અથવા વહેતા પાણીનું ચિત્ર મૂકો. <em>(જેમ કે ટેબલટોપ
+                    ફાઉન્ટેન)</em></li>
+                <li>દરરોજ સૂર્યને અર્ઘ્ય આપો અને <strong>સૂર્ય મંત્ર</strong> નો જાપ કરો. <em>(જેમ કે “ॐ घृણिः सूर्याय
+                    नमः” સવારે)</em></li>
+                <li>મોબાઇલ નંબર કે ઘરના નંબરમાં ૧ નો સમાવેશ કરો. <em>(જેમ કે ફોન નંબર 91xxx1xxx91)</em></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Missing Number 2 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+              Missing Number 2 – Moon 🌙 (Sensitivity &amp; Relationships)
+            </button>
+          </h2>
+          <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2"
+            data-bs-parent="#remedyAccordion" style="">
+            <div class="accordion-body">
+              <p><strong>Problems:</strong> People with missing number 2 tend to be emotionally disconnected, impatient,
+                and struggle with relationships or timely decisions.</p>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Place a mountain picture without water in the <strong>South-West</strong>. <em>(e.g., calm mountain
+                    landscape in your bedroom)</em></li>
+                <li>Drink water from a silver glass and wear pearl or crystal jewelry. <em>(e.g., wear a white crystal
+                    pendant)</em></li>
+                <li>Offer water to the Shivling and donate rice/sugar regularly. <em>(e.g., on Mondays)</em></li>
+              </ul>
+              <hr>
+              <p><strong>Gujarati:</strong></p>
+              <p><strong>સમસ્યાઓ:</strong> લોકો લાગણીઓ વ્યક્ત કરવામાં અસમર્થ હોય છે, અનુપસ્થિત, અવ્યવસ્થિત હોય છે અને
+                સંબંધો ટકાવી રાખવામાં મુશ્કેલી અનુભવે છે.</p>
+              <p><strong>ઉપાય:</strong></p>
+              <ul>
+                <li><strong>દક્ષિણ-પશ્ચિમ</strong> દિશામાં પાણી વિના પર્વતનું ચિત્ર મૂકો. <em>(શાંતિદાયક પર્વત
+                    દ્રશ્ય)</em></li>
+                <li>ચાંદીના ગ્લાસમાં પાણી પીવો અને મોતી/સ્ફટિક પહેરવો. <em>(જેમ કે સફેદ ક્રિસ્ટલ પેન્ડેન્ટ)</em></li>
+                <li>શિવલિંગને પાણી અર્પણ કરો અને ચોખા કે ખાંડનું દાન કરો. <em>(સોમવારે કરવું)</em></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Missing Number 3 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading3">
+            <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+              Missing Number 3 – Jupiter ⚡ (Wisdom &amp; Planning)
+            </button>
+          </h2>
+          <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3"
+            data-bs-parent="#remedyAccordion" style="">
+            <div class="accordion-body">
+              <p><strong>Problems:</strong> These individuals may lack creativity, logical thinking, and self-belief.
+                They may feel spiritually disconnected or struggle with important decisions.</p>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Use wooden objects like a pen, table, or keychain in the <strong>East</strong> of your home.
+                  <em>(e.g., wooden pen holder on desk)</em></li>
+                <li>Wear Panchmukhi Rudraksha and include green color in your surroundings. <em>(e.g., green bedsheets
+                    or plants)</em></li>
+                <li>Worship banana tree on Thursdays and apply saffron tilak. <em>(e.g., on forehead before work)</em>
+                </li>
+              </ul>
+              <hr>
+              <p><strong>Gujarati:</strong></p>
+              <p><strong>સમસ્યાઓ:</strong> આત્મવિશ્વાસની ખોટ, વ્યવસ્થિત વિચારશક્તિ ન હોવી અને આધ્યાત્મિકતાથી વિમુખ
+                રહેવું.</p>
+              <p><strong>ઉપાય:</strong></p>
+              <ul>
+                <li><strong>પૂર્વ</strong> દિશામાં લાકડાની વસ્તુઓ રાખો. <em>(જેમ કે લાકડાનું પેન સ્ટેન્ડ)</em></li>
+                <li>પંચમુખી રુદ્રાક્ષ ધારણ કરો અને લીલો રંગ વાપરો. <em>(લીલા પાનવાળા પૌધાઓ)</em></li>
+                <li>ગુરૂવારે કેળાના વૃક્ષની પૂજા કરો અને કેસર તિલક કરો. <em>(માથા પર લગાવવો)</em></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Missing Number 4 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading4">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+              Missing Number 4 – Rahu 🔮 (Stability &amp; Discipline)
+            </button>
+          </h2>
+          <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4"
+            data-bs-parent="#remedyAccordion">
+            <div class="accordion-body">
+              <p><strong>Problems:</strong> Individuals may face disorganization, lack routine, and have inconsistent
+                behavior. They may suffer from stomach-related issues.</p>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Keep green plant paintings or real plants in the <strong>South-East</strong>. <em>(e.g., snake plant
+                    in kitchen)</em></li>
+                <li>Donate coconuts and wear Tulsi mala. <em>(e.g., offer coconut at temple weekly)</em></li>
+                <li>Use wooden items in your workspace to invoke grounded energy. <em>(e.g., bamboo pen)</em></li>
+              </ul>
+              <hr>
+              <p><strong>Gujarati:</strong></p>
+              <p><strong>સમસ્યાઓ:</strong> ગેરવ્યવસ્થા, રોજિંદા સમયપત્રકના અભાવ અને પેટની સમસ્યાઓ.</p>
+              <p><strong>ઉપાય:</strong></p>
+              <ul>
+                <li><strong>દક્ષિણ-પૂર્વ</strong> દિશામાં લીલા પાનવાળા છોડ મૂકો. <em>(જેમ કે સ્નેક પ્લાન્ટ)</em></li>
+                <li>નારિયેળ દાન કરો અને તુલસીની માળા પહેરો.</li>
+                <li>લાકડાની વસ્તુઓનો ઉપયોગ કરો. <em>(જેમ કે બાંસનો પેન)</em></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Missing Number 5 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading5">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+              Missing Number 5 – Mercury 🧠 (Balance &amp; Energy)
+            </button>
+          </h2>
+          <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5"
+            data-bs-parent="#remedyAccordion">
+            <div class="accordion-body">
+              <p><strong>Problems:</strong> Life may feel unstable and scattered. The person lacks motivation, dislikes
+                routine, and avoids responsibility.</p>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Hang a picture of high mountain without water at the <strong>Center</strong>. <em>(e.g., place under
+                    roof skylight)</em></li>
+                <li>Use yellow crystals and avoid placing electronics at the center of your home. <em>(e.g., clear
+                    quartz ball)</em></li>
+                <li>Include number 5 in daily use like phone or bank PIN. <em>(e.g., end phone digits with 5)</em></li>
+              </ul>
+              <hr>
+              <p><strong>Gujarati:</strong></p>
+              <p><strong>સમસ્યાઓ:</strong> જીવનમાં અસંતુલન, ઉર્જાની ખોટ અને જવાબદારીથી બચવું.</p>
+              <p><strong>ઉપાય:</strong></p>
+              <ul>
+                <li><strong>કેન્દ્ર</strong> માં પાણી વિના ઊંચા પર્વતનું ચિત્ર મૂકો.</li>
+                <li>પીળા સ્ફટિકનો ઉપયોગ કરો અને ઈલેક્ટ્રોનિક વસ્તુઓ ટાળો.</li>
+                <li>નમ્બર ૫નો રોજિંદા જીવનમાં સમાવેશ કરો.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Missing Number 6 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading6">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+              Missing Number 6 – Venus 💫 (Love &amp; Responsibility)
+            </button>
+          </h2>
+          <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6"
+            data-bs-parent="#remedyAccordion">
+            <div class="accordion-body">
+              <p><strong>Problems:</strong> Issues in family bonding, lack of luxury, emotional distance, and struggle
+                with money or material happiness.</p>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Hang 6-rod golden wind chime in the <strong>South-East</strong>.</li>
+                <li>Donate cosmetics or sweets to married women on Friday.</li>
+                <li>Wear golden jewelry and use yellow tones during auspicious tasks.</li>
+              </ul>
+              <hr>
+              <p><strong>Gujarati:</strong></p>
+              <p><strong>સમસ્યાઓ:</strong> કુટુંબમાં સુખદ સંબંધોની ખોટ, આર્થિક તંગી અને પ્રેમની અભાવ.</p>
+              <p><strong>ઉપાય:</strong></p>
+              <ul>
+                <li><strong>દક્ષિણ-પૂર્વ</strong> માં 6 રૉડની સુવર્ણ પવનચળિયું મૂકો.</li>
+                <li>શુક્રવારે સુગંધિત વસ્તુઓ/મીઠાઈ દાન કરો.</li>
+                <li>સોનાનું આભૂષણ પહેરો અને પોળા પીળા કપડા પહેરો.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Missing Number 7 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading7">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+              Missing Number 7 – Ketu 🌀 (Spirituality &amp; Clarity)
+            </button>
+          </h2>
+          <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7"
+            data-bs-parent="#remedyAccordion">
+            <div class="accordion-body">
+              <p><strong>Problems:</strong> These individuals feel lost, confused, lack independence, and have less
+                interest in spiritual or divine practices.</p>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Use 7-rod silver wind chime in the <strong>West</strong>.</li>
+                <li>Wear silver bracelets and light-colored outfits.</li>
+                <li>Serve dogs and chant Ganesh mantra. <em>(e.g., “ॐ गं गणपतये नमः”)</em></li>
+              </ul>
+              <hr>
+              <p><strong>Gujarati:</strong></p>
+              <p><strong>સમસ્યાઓ:</strong> આત્મનિર્ભર ન હોવું, આધ્યાત્મિક અભાવ અને વિચારશક્તિ ન હોવી.</p>
+              <p><strong>ઉપાય:</strong></p>
+              <ul>
+                <li><strong>પશ્ચિમ</strong> દિશામાં 7 રૉડની ચાંદીની પવનચળિયું મૂકો.</li>
+                <li>ચાંદીનું દોરો પહેરો અને હળવા રંગના કપડા પહેરો.</li>
+                <li>કૂતરાઓને મદદ કરો અને ગણેશ મંત્રનો જાપ કરો.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Missing Number 8 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading8">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+              Missing Number 8 – Saturn 🪐 (Discipline &amp; Karma)
+            </button>
+          </h2>
+          <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8"
+            data-bs-parent="#remedyAccordion">
+            <div class="accordion-body">
+              <p><strong>Problems:</strong> Person may face chronic setbacks, laziness, poor financial decisions, and
+                ups and downs in life.</p>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Place a Kalash filled with Ganga water in the <strong>North-East</strong>.</li>
+                <li>Donate black urad dal and light mustard oil diya under Peepal tree.</li>
+                <li>Massage your feet with mustard oil before sleeping.</li>
+              </ul>
+              <hr>
+              <p><strong>Gujarati:</strong></p>
+              <p><strong>સમસ્યાઓ:</strong> આળસ, આર્થિક નુકસાન અને જીવનમાં સતત ઉતાર-ચઢાવ.</p>
+              <p><strong>ઉપાય:</strong></p>
+              <ul>
+                <li><strong>ઉત્તર-પૂર્વ</strong> દિશામાં ગંગાજળ ભરેલું કલશ મૂકો.</li>
+                <li>કાળી ઉરદ દાન કરો અને પીપળ નીચે તેલનો દીવો શણગારવો.</li>
+                <li>મસતર્ડ તેલથી પગની મસાજ કરો.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Missing Number 9 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading9">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+              Missing Number 9 – Mars 🔥 (Courage &amp; Action)
+            </button>
+          </h2>
+          <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="heading9"
+            data-bs-parent="#remedyAccordion">
+            <div class="accordion-body">
+              <p><strong>Problems:</strong> Lack of fame, impulsive nature, weak social image, and careless behavior can
+                appear when 9 is missing.</p>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Use red bulb or fire painting in <strong>South</strong>.</li>
+                <li>Chant Hanuman Chalisa regularly and wear red thread on wrist.</li>
+                <li>Feed bananas to monkeys or support orphaned children.</li>
+              </ul>
+              <hr>
+              <p><strong>Gujarati:</strong></p>
+              <p><strong>સમસ્યાઓ:</strong> ઉતાવળ, યશમાં ખોટ અને બીજાની ભાવનાઓ પ્રત્યે અવિચારી વલણ.</p>
+              <p><strong>ઉપાય:</strong></p>
+              <ul>
+                <li><strong>દક્ષિણ</strong> દિશામાં લાલ દીવો કે અગ્નિ દર્શાવતું ચિત્ર મૂકો.</li>
+                <li>હનુમાન ચાલીસા પાઠ કરો અને કાંઈક લાલ દોરો હાથમાં બાંધો.</li>
+                <li>વાનરોને કેલા ખવડાવો અથવા અનાથ બાળકોને સહાય કરો.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Accordion for Numerology Descriptions and Mapping -->
+    <div class="card mx-auto p-4 readonly-table " style="max-width: 900px; margin-top: 20px;">
+      <div class="accordion" id="accordionExample">
+
+
+
+        <!-- Numerology Descriptions Accordion Item with Tooltips -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingGridNumbers">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseGridNumbers" aria-expanded="false" aria-controls="collapseGridNumbers">
+              Lo Shu Grid Numbers: Predictions, Planes & Arrows (1–9)
+            </button>
+          </h2>
+          <div id="collapseGridNumbers" class="accordion-collapse collapse" aria-labelledby="headingGridNumbers"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body" style="max-height: 600px; overflow-y: auto;">
+
+              <h5>Characteristics & Predictions (1–9)</h5>
+              <ul class="list-unstyled">
+                <li><strong>1:</strong> Leader, confident, idea-starter. <em>Likely to achieve big dreams and take
+                    charge.</em></li>
+                <li><strong>2:</strong> Kind, team player, nurturing. <em>Brings harmony and success in
+                    relationships.</em></li>
+                <li><strong>3:</strong> Creative, joyful, expressive. <em>Positive and opens doors to exciting
+                    opportunities.</em></li>
+                <li><strong>4:</strong> Practical, reliable, disciplined. <em>Great for planning, order, and structured
+                    success.</em></li>
+                <li><strong>5:</strong> Adventurous, flexible, freedom-loving. <em>Seeks variety, open to change and
+                    personal growth.</em></li>
+                <li><strong>6:</strong> Responsible, caring, family-oriented. <em>Strong provider and community
+                    supporter.</em></li>
+                <li><strong>7:</strong> Wise, introspective, spiritual. <em>Seeks truth and deeper meaning in life.</em>
+                </li>
+                <li><strong>8:</strong> Ambitious, focused, leadership skills. <em>Aims for wealth and authority.</em>
+                </li>
+                <li><strong>9:</strong> Compassionate, idealistic, energetic. <em>Drives change through kindness and
+                    service.</em></li>
+              </ul>
+
+              <hr>
+
+              <h5>Key Benefits of the Lo Shu Grid Calculator</h5>
+              <ul>
+                <li>Reveals hidden personality traits and strengths.</li>
+                <li>Identifies challenges and career opportunities.</li>
+                <li>Provides compatibility and relationship insights.</li>
+                <li>Guides personal growth and energy balancing.</li>
+                <li>Highlights missing numbers and their remedies.</li>
+                <li>Quick and easy tool for personalized numerology.</li>
+              </ul>
+
+              <hr>
+
+              <h5>Planes in the Lo Shu Grid</h5>
+              <p>The Lo Shu Grid includes rows, columns, and diagonals called <strong>planes</strong>. Each plane
+                reflects a different aspect of your personality:</p>
+              <ul>
+                <li><strong>Diagonal:</strong> 2-5-8 (Silver Yog), 4-5-6 (Golden Yog)</li>
+                <li><strong>Vertical:</strong> 4-3-8 (Thought), 9-5-1 (Will), 2-7-6 (Action)</li>
+                <li><strong>Horizontal:</strong> 4-9-2 (Mind), 3-5-7 (Emotional), 8-1-6 (Practical)</li>
+              </ul>
+
+              <hr>
+
+              <h5>Present Arrows in Lo Shu Grid</h5>
+              <ul>
+                <li><strong>2-5-8:</strong> Strong willpower, great under pressure, real estate potential.</li>
+                <li><strong>4-5-6:</strong> Positive energy, gentle, respectful, grows into a strong personality.</li>
+                <li><strong>4-9-2:</strong> Sharp memory, logical, excellent planner, honest.</li>
+                <li><strong>3-5-7:</strong> Emotionally wise, kind-hearted, spiritually inclined.</li>
+                <li><strong>8-1-6:</strong> Very practical, business-savvy, financially focused.</li>
+                <li><strong>4-3-8:</strong> Strategic thinker, clear vision, goal-oriented.</li>
+                <li><strong>9-5-1:</strong> Strong-willed, passionate, assertive in communication.</li>
+                <li><strong>2-7-6:</strong> Active, physically energetic, completes tasks well.</li>
+              </ul>
+
+              <hr>
+
+              <h5>Missing Arrows and Their Effects</h5>
+              <ul>
+                <li><strong>2-5-8:</strong> Prone to mistakes; needs to pause and think before acting.</li>
+                <li><strong>4-5-6:</strong> Struggles with self-doubt and fear of failure.</li>
+                <li><strong>4-9-2:</strong> Weak memory, especially later in life.</li>
+                <li><strong>3-5-7:</strong> Feels lonely even in crowds; lacks inner motivation.</li>
+                <li><strong>8-1-6:</strong> Dreams of success without effort; lacks practicality.</li>
+                <li><strong>4-3-8:</strong> Confused thinking, poor decision-making.</li>
+                <li><strong>9-5-1:</strong> Easily influenced, lacks firm decisions, approval-seeking.</li>
+                <li><strong>2-7-6:</strong> Misses opportunities due to hesitation and fear of risk.</li>
+              </ul>
+
+              <p class="mt-3"><em>The Lo Shu Grid is like a mirror of your inner world—use it to discover your
+                  strengths, balance your life, and unlock your full potential!</em></p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Alphabet to Planet Mapping Accordion Item -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingMapping">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseMapping" aria-expanded="false" aria-controls="collapseMapping">
+              Alphabet to Planet Mapping
+            </button>
+          </h2>
+          <div id="collapseMapping" class="accordion-collapse collapse" aria-labelledby="headingMapping"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th><strong>ALPHABETS</strong></th>
+                    <th><strong>NUMBER</strong></th>
+                    <th><strong>PLANETS</strong></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>A I J Q Y</td>
+                    <td>1</td>
+                    <td>SUN - સૂર્ય</td>
+                  </tr>
+                  <tr>
+                    <td>B K R</td>
+                    <td>2</td>
+                    <td>MOON - ચંદ્ર</td>
+                  </tr>
+                  <tr>
+                    <td>C G L S</td>
+                    <td>3</td>
+                    <td>JUPITER - ગુરુ</td>
+                  </tr>
+                  <tr>
+                    <td>D M T</td>
+                    <td>4</td>
+                    <td>RAHU - રાહુ</td>
+                  </tr>
+                  <tr>
+                    <td>E H N X</td>
+                    <td>5</td>
+                    <td>MERCURY - બુધ</td>
+                  </tr>
+                  <tr>
+                    <td>U V W</td>
+                    <td>6</td>
+                    <td>VENUS - શુક્ર</td>
+                  </tr>
+                  <tr>
+                    <td>O Z</td>
+                    <td>7</td>
+                    <td>KETU - કેतु</td>
+                  </tr>
+                  <tr>
+                    <td>F P</td>
+                    <td>8</td>
+                    <td>SATURN - શનિ</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>9</td>
+                    <td>MARS - મંગળ</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Search History Section -->
+    <div class="card mx-auto p-4 readonly-table" style="max-width: 900px; margin-top: 20px;" id="historyContainer">
+      <h4 class="text-center">Search History</h4>
+      <div id="historyList"></div>
+    </div>
+
+  </div>
+  <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailModalLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="detailModalBody">
+          <!-- Description will be inserted here -->
+        </div>
       </div>
     </div>
   </div>
-  
-
-  <div class="card mx-auto p-4 readonly-table " style="max-width: 900px; margin-top: 20px;">
-    <h3 class="text-center mb-4">Lo Shu Grid Missing Number Remedies (1–9)</h3>
-    <div class="accordion" id="remedyAccordion">
-      
-      <!-- Missing Number 1 -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="heading1">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-            Missing Number 1 – Sun ☀️ (Leadership &amp; Confidence)
-          </button>
-        </h2>
-        <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#remedyAccordion" style="">
-          <div class="accordion-body">
-            <p><strong>Problems:</strong> People with missing number 1 often struggle to express themselves and lack leadership qualities. They may avoid taking initiative or have low self-esteem.</p>
-            <p><strong>Solutions:</strong></p>
-            <ul>
-              <li>Place a water fountain or a picture of flowing water in the <strong>North</strong> of your home to enhance confidence. <em>(e.g., a small tabletop fountain in your study room)</em></li>
-              <li>Offer water to the Sun and chant <strong>Surya Mantra</strong> daily to increase self-belief. <em>(e.g., “ॐ घृणिः सूर्याय नमः” during sunrise)</em></li>
-              <li>Incorporate the number 1 in personal items like mobile number or house number to subtly bring its energy. <em>(e.g., choose phone number ending in 1)</em></li>
-            </ul>
-            <hr>
-            <p><strong>Gujarati:</strong></p>
-            <p><strong>સમસ્યાઓ:</strong> જે લોકોના લોશૂ ગ્રિડમાં નંબર ૧ ગુમ છે, તેઓ પોતાનું વ્યક્તિત્વ વ્યક્ત કરવામાં શંકાસ્પદ હોય છે અને નેતૃત્વ લેતા સંકોચ અનુભવતા હોય છે.</p>
-            <p><strong>ઉપાય:</strong></p>
-            <ul>
-              <li><strong>ઉત્તર</strong> દિશામાં પાણીનો ફાઉન્ટેન અથવા વહેતા પાણીનું ચિત્ર મૂકો. <em>(જેમ કે ટેબલટોપ ફાઉન્ટેન)</em></li>
-              <li>દરરોજ સૂર્યને અર્ઘ્ય આપો અને <strong>સૂર્ય મંત્ર</strong> નો જાપ કરો. <em>(જેમ કે “ॐ घृણिः सूर्याय नमः” સવારે)</em></li>
-              <li>મોબાઇલ નંબર કે ઘરના નંબરમાં ૧ નો સમાવેશ કરો. <em>(જેમ કે ફોન નંબર 91xxx1xxx91)</em></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Missing Number 2 -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="heading2">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-            Missing Number 2 – Moon 🌙 (Sensitivity &amp; Relationships)
-          </button>
-        </h2>
-        <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#remedyAccordion" style="">
-          <div class="accordion-body">
-            <p><strong>Problems:</strong> People with missing number 2 tend to be emotionally disconnected, impatient, and struggle with relationships or timely decisions.</p>
-            <p><strong>Solutions:</strong></p>
-            <ul>
-              <li>Place a mountain picture without water in the <strong>South-West</strong>. <em>(e.g., calm mountain landscape in your bedroom)</em></li>
-              <li>Drink water from a silver glass and wear pearl or crystal jewelry. <em>(e.g., wear a white crystal pendant)</em></li>
-              <li>Offer water to the Shivling and donate rice/sugar regularly. <em>(e.g., on Mondays)</em></li>
-            </ul>
-            <hr>
-            <p><strong>Gujarati:</strong></p>
-            <p><strong>સમસ્યાઓ:</strong> લોકો લાગણીઓ વ્યક્ત કરવામાં અસમર્થ હોય છે, અનુપસ્થિત, અવ્યવસ્થિત હોય છે અને સંબંધો ટકાવી રાખવામાં મુશ્કેલી અનુભવે છે.</p>
-            <p><strong>ઉપાય:</strong></p>
-            <ul>
-              <li><strong>દક્ષિણ-પશ્ચિમ</strong> દિશામાં પાણી વિના પર્વતનું ચિત્ર મૂકો. <em>(શાંતિદાયક પર્વત દ્રશ્ય)</em></li>
-              <li>ચાંદીના ગ્લાસમાં પાણી પીવો અને મોતી/સ્ફટિક પહેરવો. <em>(જેમ કે સફેદ ક્રિસ્ટલ પેન્ડેન્ટ)</em></li>
-              <li>શિવલિંગને પાણી અર્પણ કરો અને ચોખા કે ખાંડનું દાન કરો. <em>(સોમવારે કરવું)</em></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Missing Number 3 -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="heading3">
-          <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
-            Missing Number 3 – Jupiter ⚡ (Wisdom &amp; Planning)
-          </button>
-        </h2>
-        <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#remedyAccordion" style="">
-          <div class="accordion-body">
-            <p><strong>Problems:</strong> These individuals may lack creativity, logical thinking, and self-belief. They may feel spiritually disconnected or struggle with important decisions.</p>
-            <p><strong>Solutions:</strong></p>
-            <ul>
-              <li>Use wooden objects like a pen, table, or keychain in the <strong>East</strong> of your home. <em>(e.g., wooden pen holder on desk)</em></li>
-              <li>Wear Panchmukhi Rudraksha and include green color in your surroundings. <em>(e.g., green bedsheets or plants)</em></li>
-              <li>Worship banana tree on Thursdays and apply saffron tilak. <em>(e.g., on forehead before work)</em></li>
-            </ul>
-            <hr>
-            <p><strong>Gujarati:</strong></p>
-            <p><strong>સમસ્યાઓ:</strong> આત્મવિશ્વાસની ખોટ, વ્યવસ્થિત વિચારશક્તિ ન હોવી અને આધ્યાત્મિકતાથી વિમુખ રહેવું.</p>
-            <p><strong>ઉપાય:</strong></p>
-            <ul>
-              <li><strong>પૂર્વ</strong> દિશામાં લાકડાની વસ્તુઓ રાખો. <em>(જેમ કે લાકડાનું પેન સ્ટેન્ડ)</em></li>
-              <li>પંચમુખી રુદ્રાક્ષ ધારણ કરો અને લીલો રંગ વાપરો. <em>(લીલા પાનવાળા પૌધાઓ)</em></li>
-              <li>ગુરૂવારે કેળાના વૃક્ષની પૂજા કરો અને કેસર તિલક કરો. <em>(માથા પર લગાવવો)</em></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-            
-      <!-- Missing Number 4 -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="heading4">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-            Missing Number 4 – Rahu 🔮 (Stability &amp; Discipline)
-          </button>
-        </h2>
-        <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#remedyAccordion">
-          <div class="accordion-body">
-            <p><strong>Problems:</strong> Individuals may face disorganization, lack routine, and have inconsistent behavior. They may suffer from stomach-related issues.</p>
-            <p><strong>Solutions:</strong></p>
-            <ul>
-              <li>Keep green plant paintings or real plants in the <strong>South-East</strong>. <em>(e.g., snake plant in kitchen)</em></li>
-              <li>Donate coconuts and wear Tulsi mala. <em>(e.g., offer coconut at temple weekly)</em></li>
-              <li>Use wooden items in your workspace to invoke grounded energy. <em>(e.g., bamboo pen)</em></li>
-            </ul>
-            <hr>
-            <p><strong>Gujarati:</strong></p>
-            <p><strong>સમસ્યાઓ:</strong> ગેરવ્યવસ્થા, રોજિંદા સમયપત્રકના અભાવ અને પેટની સમસ્યાઓ.</p>
-            <p><strong>ઉપાય:</strong></p>
-            <ul>
-              <li><strong>દક્ષિણ-પૂર્વ</strong> દિશામાં લીલા પાનવાળા છોડ મૂકો. <em>(જેમ કે સ્નેક પ્લાન્ટ)</em></li>
-              <li>નારિયેળ દાન કરો અને તુલસીની માળા પહેરો.</li>
-              <li>લાકડાની વસ્તુઓનો ઉપયોગ કરો. <em>(જેમ કે બાંસનો પેન)</em></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Missing Number 5 -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="heading5">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-            Missing Number 5 – Mercury 🧠 (Balance &amp; Energy)
-          </button>
-        </h2>
-        <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#remedyAccordion">
-          <div class="accordion-body">
-            <p><strong>Problems:</strong> Life may feel unstable and scattered. The person lacks motivation, dislikes routine, and avoids responsibility.</p>
-            <p><strong>Solutions:</strong></p>
-            <ul>
-              <li>Hang a picture of high mountain without water at the <strong>Center</strong>. <em>(e.g., place under roof skylight)</em></li>
-              <li>Use yellow crystals and avoid placing electronics at the center of your home. <em>(e.g., clear quartz ball)</em></li>
-              <li>Include number 5 in daily use like phone or bank PIN. <em>(e.g., end phone digits with 5)</em></li>
-            </ul>
-            <hr>
-            <p><strong>Gujarati:</strong></p>
-            <p><strong>સમસ્યાઓ:</strong> જીવનમાં અસંતુલન, ઉર્જાની ખોટ અને જવાબદારીથી બચવું.</p>
-            <p><strong>ઉપાય:</strong></p>
-            <ul>
-              <li><strong>કેન્દ્ર</strong> માં પાણી વિના ઊંચા પર્વતનું ચિત્ર મૂકો.</li>
-              <li>પીળા સ્ફટિકનો ઉપયોગ કરો અને ઈલેક્ટ્રોનિક વસ્તુઓ ટાળો.</li>
-              <li>નમ્બર ૫નો રોજિંદા જીવનમાં સમાવેશ કરો.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Missing Number 6 -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="heading6">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
-            Missing Number 6 – Venus 💫 (Love &amp; Responsibility)
-          </button>
-        </h2>
-        <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6" data-bs-parent="#remedyAccordion">
-          <div class="accordion-body">
-            <p><strong>Problems:</strong> Issues in family bonding, lack of luxury, emotional distance, and struggle with money or material happiness.</p>
-            <p><strong>Solutions:</strong></p>
-            <ul>
-              <li>Hang 6-rod golden wind chime in the <strong>South-East</strong>.</li>
-              <li>Donate cosmetics or sweets to married women on Friday.</li>
-              <li>Wear golden jewelry and use yellow tones during auspicious tasks.</li>
-            </ul>
-            <hr>
-            <p><strong>Gujarati:</strong></p>
-            <p><strong>સમસ્યાઓ:</strong> કુટુંબમાં સુખદ સંબંધોની ખોટ, આર્થિક તંગી અને પ્રેમની અભાવ.</p>
-            <p><strong>ઉપાય:</strong></p>
-            <ul>
-              <li><strong>દક્ષિણ-પૂર્વ</strong> માં 6 રૉડની સુવર્ણ પવનચળિયું મૂકો.</li>
-              <li>શુક્રવારે સુગંધિત વસ્તુઓ/મીઠાઈ દાન કરો.</li>
-              <li>સોનાનું આભૂષણ પહેરો અને પોળા પીળા કપડા પહેરો.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Missing Number 7 -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="heading7">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
-            Missing Number 7 – Ketu 🌀 (Spirituality &amp; Clarity)
-          </button>
-        </h2>
-        <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7" data-bs-parent="#remedyAccordion">
-          <div class="accordion-body">
-            <p><strong>Problems:</strong> These individuals feel lost, confused, lack independence, and have less interest in spiritual or divine practices.</p>
-            <p><strong>Solutions:</strong></p>
-            <ul>
-              <li>Use 7-rod silver wind chime in the <strong>West</strong>.</li>
-              <li>Wear silver bracelets and light-colored outfits.</li>
-              <li>Serve dogs and chant Ganesh mantra. <em>(e.g., “ॐ गं गणपतये नमः”)</em></li>
-            </ul>
-            <hr>
-            <p><strong>Gujarati:</strong></p>
-            <p><strong>સમસ્યાઓ:</strong> આત્મનિર્ભર ન હોવું, આધ્યાત્મિક અભાવ અને વિચારશક્તિ ન હોવી.</p>
-            <p><strong>ઉપાય:</strong></p>
-            <ul>
-              <li><strong>પશ્ચિમ</strong> દિશામાં 7 રૉડની ચાંદીની પવનચળિયું મૂકો.</li>
-              <li>ચાંદીનું દોરો પહેરો અને હળવા રંગના કપડા પહેરો.</li>
-              <li>કૂતરાઓને મદદ કરો અને ગણેશ મંત્રનો જાપ કરો.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Missing Number 8 -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="heading8">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
-            Missing Number 8 – Saturn 🪐 (Discipline &amp; Karma)
-          </button>
-        </h2>
-        <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8" data-bs-parent="#remedyAccordion">
-          <div class="accordion-body">
-            <p><strong>Problems:</strong> Person may face chronic setbacks, laziness, poor financial decisions, and ups and downs in life.</p>
-            <p><strong>Solutions:</strong></p>
-            <ul>
-              <li>Place a Kalash filled with Ganga water in the <strong>North-East</strong>.</li>
-              <li>Donate black urad dal and light mustard oil diya under Peepal tree.</li>
-              <li>Massage your feet with mustard oil before sleeping.</li>
-            </ul>
-            <hr>
-            <p><strong>Gujarati:</strong></p>
-            <p><strong>સમસ્યાઓ:</strong> આળસ, આર્થિક નુકસાન અને જીવનમાં સતત ઉતાર-ચઢાવ.</p>
-            <p><strong>ઉપાય:</strong></p>
-            <ul>
-              <li><strong>ઉત્તર-પૂર્વ</strong> દિશામાં ગંગાજળ ભરેલું કલશ મૂકો.</li>
-              <li>કાળી ઉરદ દાન કરો અને પીપળ નીચે તેલનો દીવો શણગારવો.</li>
-              <li>મસતર્ડ તેલથી પગની મસાજ કરો.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Missing Number 9 -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="heading9">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
-            Missing Number 9 – Mars 🔥 (Courage &amp; Action)
-          </button>
-        </h2>
-        <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="heading9" data-bs-parent="#remedyAccordion">
-          <div class="accordion-body">
-            <p><strong>Problems:</strong> Lack of fame, impulsive nature, weak social image, and careless behavior can appear when 9 is missing.</p>
-            <p><strong>Solutions:</strong></p>
-            <ul>
-              <li>Use red bulb or fire painting in <strong>South</strong>.</li>
-              <li>Chant Hanuman Chalisa regularly and wear red thread on wrist.</li>
-              <li>Feed bananas to monkeys or support orphaned children.</li>
-            </ul>
-            <hr>
-            <p><strong>Gujarati:</strong></p>
-            <p><strong>સમસ્યાઓ:</strong> ઉતાવળ, યશમાં ખોટ અને બીજાની ભાવનાઓ પ્રત્યે અવિચારી વલણ.</p>
-            <p><strong>ઉપાય:</strong></p>
-            <ul>
-              <li><strong>દક્ષિણ</strong> દિશામાં લાલ દીવો કે અગ્નિ દર્શાવતું ચિત્ર મૂકો.</li>
-              <li>હનુમાન ચાલીસા પાઠ કરો અને કાંઈક લાલ દોરો હાથમાં બાંધો.</li>
-              <li>વાનરોને કેલા ખવડાવો અથવા અનાથ બાળકોને સહાય કરો.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-          </div>
-  </div>
-  <!-- Accordion for Numerology Descriptions and Mapping -->
-  <div class="card mx-auto p-4 readonly-table " style="max-width: 900px; margin-top: 20px;">
-    <div class="accordion" id="accordionExample"> 
-    
-    
-
-      <!-- Numerology Descriptions Accordion Item with Tooltips -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingGridNumbers">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGridNumbers" aria-expanded="false" aria-controls="collapseGridNumbers">
-            Lo Shu Grid Numbers: Predictions, Planes & Arrows (1–9)
-          </button>
-        </h2>
-        <div id="collapseGridNumbers" class="accordion-collapse collapse" aria-labelledby="headingGridNumbers" data-bs-parent="#accordionExample">
-          <div class="accordion-body" style="max-height: 600px; overflow-y: auto;">
-      
-            <h5>Characteristics & Predictions (1–9)</h5>
-            <ul class="list-unstyled">
-              <li><strong>1:</strong> Leader, confident, idea-starter. <em>Likely to achieve big dreams and take charge.</em></li>
-              <li><strong>2:</strong> Kind, team player, nurturing. <em>Brings harmony and success in relationships.</em></li>
-              <li><strong>3:</strong> Creative, joyful, expressive. <em>Positive and opens doors to exciting opportunities.</em></li>
-              <li><strong>4:</strong> Practical, reliable, disciplined. <em>Great for planning, order, and structured success.</em></li>
-              <li><strong>5:</strong> Adventurous, flexible, freedom-loving. <em>Seeks variety, open to change and personal growth.</em></li>
-              <li><strong>6:</strong> Responsible, caring, family-oriented. <em>Strong provider and community supporter.</em></li>
-              <li><strong>7:</strong> Wise, introspective, spiritual. <em>Seeks truth and deeper meaning in life.</em></li>
-              <li><strong>8:</strong> Ambitious, focused, leadership skills. <em>Aims for wealth and authority.</em></li>
-              <li><strong>9:</strong> Compassionate, idealistic, energetic. <em>Drives change through kindness and service.</em></li>
-            </ul>
-      
-            <hr>
-      
-            <h5>Key Benefits of the Lo Shu Grid Calculator</h5>
-            <ul>
-              <li>Reveals hidden personality traits and strengths.</li>
-              <li>Identifies challenges and career opportunities.</li>
-              <li>Provides compatibility and relationship insights.</li>
-              <li>Guides personal growth and energy balancing.</li>
-              <li>Highlights missing numbers and their remedies.</li>
-              <li>Quick and easy tool for personalized numerology.</li>
-            </ul>
-      
-            <hr>
-      
-            <h5>Planes in the Lo Shu Grid</h5>
-            <p>The Lo Shu Grid includes rows, columns, and diagonals called <strong>planes</strong>. Each plane reflects a different aspect of your personality:</p>
-            <ul>
-              <li><strong>Diagonal:</strong> 2-5-8 (Silver Yog), 4-5-6 (Golden Yog)</li>
-              <li><strong>Vertical:</strong> 4-3-8 (Thought), 9-5-1 (Will), 2-7-6 (Action)</li>
-              <li><strong>Horizontal:</strong> 4-9-2 (Mind), 3-5-7 (Emotional), 8-1-6 (Practical)</li>
-            </ul>
-      
-            <hr>
-      
-            <h5>Present Arrows in Lo Shu Grid</h5>
-            <ul>
-              <li><strong>2-5-8:</strong> Strong willpower, great under pressure, real estate potential.</li>
-              <li><strong>4-5-6:</strong> Positive energy, gentle, respectful, grows into a strong personality.</li>
-              <li><strong>4-9-2:</strong> Sharp memory, logical, excellent planner, honest.</li>
-              <li><strong>3-5-7:</strong> Emotionally wise, kind-hearted, spiritually inclined.</li>
-              <li><strong>8-1-6:</strong> Very practical, business-savvy, financially focused.</li>
-              <li><strong>4-3-8:</strong> Strategic thinker, clear vision, goal-oriented.</li>
-              <li><strong>9-5-1:</strong> Strong-willed, passionate, assertive in communication.</li>
-              <li><strong>2-7-6:</strong> Active, physically energetic, completes tasks well.</li>
-            </ul>
-      
-            <hr>
-      
-            <h5>Missing Arrows and Their Effects</h5>
-            <ul>
-              <li><strong>2-5-8:</strong> Prone to mistakes; needs to pause and think before acting.</li>
-              <li><strong>4-5-6:</strong> Struggles with self-doubt and fear of failure.</li>
-              <li><strong>4-9-2:</strong> Weak memory, especially later in life.</li>
-              <li><strong>3-5-7:</strong> Feels lonely even in crowds; lacks inner motivation.</li>
-              <li><strong>8-1-6:</strong> Dreams of success without effort; lacks practicality.</li>
-              <li><strong>4-3-8:</strong> Confused thinking, poor decision-making.</li>
-              <li><strong>9-5-1:</strong> Easily influenced, lacks firm decisions, approval-seeking.</li>
-              <li><strong>2-7-6:</strong> Misses opportunities due to hesitation and fear of risk.</li>
-            </ul>
-      
-            <p class="mt-3"><em>The Lo Shu Grid is like a mirror of your inner world—use it to discover your strengths, balance your life, and unlock your full potential!</em></p>
-          </div>
-        </div>
-      </div>
-      
-      
-      <!-- Alphabet to Planet Mapping Accordion Item -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingMapping">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMapping" aria-expanded="false" aria-controls="collapseMapping">
-            Alphabet to Planet Mapping 
-          </button>
-        </h2>
-        <div id="collapseMapping" class="accordion-collapse collapse" aria-labelledby="headingMapping" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th><strong>ALPHABETS</strong></th>
-                  <th><strong>NUMBER</strong></th>
-                  <th><strong>PLANETS</strong></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>A I J Q Y</td><td>1</td><td>SUN - સૂર્ય</td></tr>
-                <tr><td>B K R</td><td>2</td><td>MOON - ચંદ્ર</td></tr>
-                <tr><td>C G L S</td><td>3</td><td>JUPITER - ગુરુ</td></tr>
-                <tr><td>D M T</td><td>4</td><td>RAHU - રાહુ</td></tr>
-                <tr><td>E H N X</td><td>5</td><td>MERCURY - બુધ</td></tr>
-                <tr><td>U V W</td><td>6</td><td>VENUS - શુક્ર</td></tr>
-                <tr><td>O Z</td><td>7</td><td>KETU - કેतु</td></tr>
-                <tr><td>F P</td><td>8</td><td>SATURN - શનિ</td></tr>
-                <tr><td></td><td>9</td><td>MARS - મંગળ</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  
-  <!-- Search History Section -->
-  <div class="card mx-auto p-4 readonly-table" style="max-width: 900px; margin-top: 20px;" id="historyContainer">
-    <h4 class="text-center">Search History</h4>
-    <div id="historyList"></div>
-  </div>
-  
-</div>
-<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-         <h5 class="modal-title" id="detailModalLabel"></h5>
-         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="detailModalBody">
-         <!-- Description will be inserted here -->
-      </div>
-    </div>
-  </div>
-</div>
 
 
-<!-- Bootstrap 5 Bundle JS (includes Popper) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  // Initialize Bootstrap tooltips (trigger on hover, focus, click)
-  document.addEventListener('DOMContentLoaded', function () {
-    initTolltip();
-  });
-  function initTolltip(){
-    const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.forEach(tooltipTriggerEl => {
-      new bootstrap.Tooltip(tooltipTriggerEl);
+  <!-- Bootstrap 5 Bundle JS (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Initialize Bootstrap tooltips (trigger on hover, focus, click)
+    document.addEventListener('DOMContentLoaded', function () {
+      initTolltip();
+    });
+    function initTolltip() {
+      const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.forEach(tooltipTriggerEl => {
+        new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+
+    }
+
+    // Populate year dropdown dynamically from (currentYear - 100) to currentYear
+    document.addEventListener("DOMContentLoaded", function () {
+      const yearSelect = document.getElementById("year");
+      const currentYear = new Date().getFullYear();
+      const startYear = currentYear - 100;
+      for (let y = currentYear; y >= startYear; y--) {
+        const opt = document.createElement("option");
+        opt.value = y;
+        opt.textContent = y;
+        yearSelect.appendChild(opt);
+      }
+      renderHistory(); // Render history on page load
     });
 
-  }
+    // Compute digital root (reduce to single digit)
+    function digitalRoot(n) {
+      n = parseInt(n, 10);
+      while (n > 9) {
+        n = String(n).split('').reduce((sum, digit) => sum + parseInt(digit, 10), 0);
+      }
+      return n;
+    }
 
-  // Populate year dropdown dynamically from (currentYear - 100) to currentYear
-  document.addEventListener("DOMContentLoaded", function() {
-    const yearSelect = document.getElementById("year");
-    const currentYear = new Date().getFullYear();
-    const startYear = currentYear - 100;
-    for (let y = currentYear; y >= startYear; y--) {
-      const opt = document.createElement("option");
-      opt.value = y;
-      opt.textContent = y;
-      yearSelect.appendChild(opt);
-    }
-    renderHistory(); // Render history on page load
-  });
-  
-  // Compute digital root (reduce to single digit)
-  function digitalRoot(n) {
-    n = parseInt(n, 10);
-    while (n > 9) {
-      n = String(n).split('').reduce((sum, digit) => sum + parseInt(digit, 10), 0);
-    }
-    return n;
-  }
-  
-  // Compute Name Number from the provided name using the mapping:
-  // A, I, J, Q, Y => 1; B, K, R => 2; C, G, L, S => 3; D, M, T => 4;
-  // E, H, N, X => 5; U, V, W => 6; O, Z => 7; F, P => 8.
-  function computeNameNumber(name) {
-    name = name.toUpperCase();
-    let sum = 0;
-    for (let char of name) {
-      if (char >= 'A' && char <= 'Z') {
-        if ("AIJQY".includes(char)) {
-          sum += 1;
-        } else if ("BKR".includes(char)) {
-          sum += 2;
-        } else if ("CGLS".includes(char)) {
-          sum += 3;
-        } else if ("DMT".includes(char)) {
-          sum += 4;
-        } else if ("EHNX".includes(char)) {
-          sum += 5;
-        } else if ("UVW".includes(char)) {
-          sum += 6;
-        } else if ("OZ".includes(char)) {
-          sum += 7;
-        } else if ("FP".includes(char)) {
-          sum += 8;
+    // Compute Name Number from the provided name using the mapping:
+    // A, I, J, Q, Y => 1; B, K, R => 2; C, G, L, S => 3; D, M, T => 4;
+    // E, H, N, X => 5; U, V, W => 6; O, Z => 7; F, P => 8.
+    function computeNameNumber(name) {
+      name = name.toUpperCase();
+      let sum = 0;
+      for (let char of name) {
+        if (char >= 'A' && char <= 'Z') {
+          if ("AIJQY".includes(char)) {
+            sum += 1;
+          } else if ("BKR".includes(char)) {
+            sum += 2;
+          } else if ("CGLS".includes(char)) {
+            sum += 3;
+          } else if ("DMT".includes(char)) {
+            sum += 4;
+          } else if ("EHNX".includes(char)) {
+            sum += 5;
+          } else if ("UVW".includes(char)) {
+            sum += 6;
+          } else if ("OZ".includes(char)) {
+            sum += 7;
+          } else if ("FP".includes(char)) {
+            sum += 8;
+          }
         }
       }
+      return digitalRoot(sum);
     }
-    return digitalRoot(sum);
-  }
-  
-  // Loshu Grid mapping (standard positions):
-  //      4   9   2
-  //      3   5   7
-  //      8   1   6
-  const positionMap = {
-    1: [2, 1],
-    2: [0, 2],
-    3: [1, 0],
-    4: [0, 0],
-    5: [1, 1],
-    6: [2, 2],
-    7: [1, 2],
-    8: [2, 0],
-    9: [0, 1]
-  };
-  
-  const birthForm = document.getElementById('birthForm');
-  const loshuGridDiv = document.getElementById('loshuGrid');
-  const driverLabel = document.getElementById('driverLabel');
-  const conductorLabel = document.getElementById('conductorLabel');
-  const kuvaLabel = document.getElementById('kuvaLabel');
-  const nameNumberLabel = document.getElementById('nameNumberLabel');
-  const historyListDiv = document.getElementById('historyList');
 
-  function showPopup(expectedDigit) {
-  // Define detailed descriptions for each expected digit
-const descriptions = {
-  1: `1 (Sun - સૂર્ય)<br>1 represents career, success, business, communication, and being yourself. It’s linked to the water element, kidneys and ears, colors black and dark blue, the Sun, and the middle son. Points north and is good for career.<br><br>૧ (સૂર્ય) કારકિર્દી, સફળતા, વ્યવસાય, સંચાર અને પોતાની જાત તરીકે જીવવાનું દર્શાવે છે. તે જળ તત્વ, ગુર્દા અને કાન, કાળા અને ગાઢ વાદળી રંગો, સૂર્ય અને મધ્યમ પુત્ર સાથે સંબંધિત છે. ઉત્તર દિશામાં છે અને કારકિર્દી માટે શુભ છે.`,
-  2: `2 (Moon - ચંદ્ર)<br>2 stands for love, marriage, relationships, emotions, and motherly care. It’s connected to the earth element, abdomen, and the colors pink, red, and white, representing the Moon, the mother, and the southwest direction.<br><br>૨ (ચંદ્ર) પ્રેમ, લગ્ન, સંબંધો, ભાવનાઓ અને માતૃત્વની દેખરેખનું પ્રતિનિધિત્વ કરે છે. તે પૃથ્વી તત્વ, પેટ અને ગુલાબી, લાલ અને સફેદ રંગો સાથે જોડાયેલું છે. ચંદ્ર, માતા અને દક્ષિણ પશ્ચિમ દિશાને દર્શાવે છે.`,
-  3: `3 (Jupiter - ગુરુ)<br>3 is about health, planning, imagination, family, and wisdom. It’s tied to hard wood, feet, knees, and ankles, and is associated with green and blue colors, Jupiter, the oldest son, and the east.<br><br>૩ (ગુરુ) આરોગ્ય, યોજના, કલ્પના, પરિવાર અને જ્ઞાન માટે છે. તે કઠણ લાકડું, પગ, ઘૂંટણ અને પગની કાંસળી સાથે જોડાયેલું છે. લીલા અને વાદળી રંગો, ગુરુ, મોટો પુત્ર અને પૂર્વ દિશા સાથે સંકળાયેલું છે.`,
-  4: `4 (Rahu - રાહુ)<br>4 relates to money, discipline, confidence, and power. It’s linked to soft wood, the liver, and the thicker parts of the body, representing Rahu and associated with the southeast.<br><br>૪ (રાહુ) પૈસા, અનુશાસન, આત્મવિશ્વાસ અને શક્તિ સાથે સંબંધિત છે. તે નરમ લાકડું, યકૃત અને શરીરના જાડા ભાગો સાથે જોડાયેલું છે. રાહુનું પ્રતિનિધિત્વ કરે છે અને દક્ષિણ પૂર્વ દિશા સાથે સંકળાયેલું છે.`,
-  5: `5 (Mercury - બુધ)<br>5 is for balance, stability, fortune, freedom, and mental health. It’s connected to the earth element, internal organs, and is linked with Mercury, representing the whole family and the center.<br><br>૫ (બુધ) સંતુલન, સ્થિરતા, નસીબ, સ્વતંત્રતા અને માનસિક આરોગ્ય માટે છે. તે પૃથ્વી તત્વ અને આંતરિક અંગો સાથે જોડાયેલું છે. બુધ, આખા પરિવાર અને કેન્દ્રનું પ્રતિનિધિત્વ કરે છે.`,
-  6: `6 (Venus - શુક્ર)<br>6 represents friends, travel, new beginnings, and spirituality. It’s tied to hard metal, the head, and associated with gray, black, and white colors, as well as Venus, the father, and the northwest.<br><br>૬ (શુક્ર) મિત્રો, મુસાફરી, નવા શરૂઆત અને આધ્યાત્મિકતાનું પ્રતિનિધિત્વ કરે છે. તે કઠણ ધાતુ, માથું અને ભૂખા, કાળા અને સફેદ રંગો સાથે જોડાયેલું છે. શુક્ર, પિતા અને ઉત્તર પશ્ચિમ દિશાને દર્શાવે છે.`,
-  7: `7 (Ketu - કેતુ)<br>7 focuses on children, creativity, fun, and the future. It’s linked to soft metal, the mouth and lungs, and is associated with white, silver, gray, and copper, representing the youngest daughter and the west.<br><br>૭ (केतુ) બાળકો, સર્જનાત્મકતા, આનંદ અને ભવિષ્ય પર ધ્યાન કેન્દ્રિત કરે છે. તે નરમ ધાતુ, મોઢું અને ફેફસાં સાથે જોડાયેલું છે. સફેદ, ચાંદી, ભૂખા અને તામ્ર રંગો સાથે સંકળાયેલું છે. નાની દીકરી અને પશ્ચિમ દિશાનું પ્રતિનિધિત્વ કરે છે.`,
-  8: `8 (Saturn - શનિ)<br>8 symbolizes knowledge, motivation, being organized, and spiritual growth. It’s related to the earth, hands, body weight, and is tied to blue, black, and green colors, representing Saturn, the youngest son, and the northeast.<br><br>૮ (શનિ) જ્ઞાન, પ્રેરણા, વ્યવસ્થિત હોવું અને આધ્યાત્મિક વૃદ્ધિનું પ્રતીક છે. તે પૃથ્વી, હાથ, શરીરના વજન સાથે સંબંધિત છે. વાદળી, કાળો અને લીલો રંગ શનિ, નાનો પુત્ર અને ઉત્તર પૂર્વ દિશાને દર્શાવે છે.`,
-  9: `9 (Mars - મંગળ)<br>9 stands for fame, reputation, social life, and kindness. It’s associated with fire, the heart, blood, and eyes, linked to the red color, Mars, the middle daughter, and the south.<br><br>૯ (મંગળ) યશ, પ્રતિષ્ઠા, સામાજિક જીવન અને દયાળુતાનું પ્રતિનિધિત્વ કરે છે. તે અગ્નિ, હ્રદય, લોહી અને આંખો સાથે સંકળાયેલું છે. લાલ રંગ, મંગળ, મધ્યમ દીકરી અને દક્ષિણ દિશાનું પ્રતીક છે.`
-};
+    // Loshu Grid mapping (standard positions):
+    //      4   9   2
+    //      3   5   7
+    //      8   1   6
+    const positionMap = {
+      1: [2, 1],
+      2: [0, 2],
+      3: [1, 0],
+      4: [0, 0],
+      5: [1, 1],
+      6: [2, 2],
+      7: [1, 2],
+      8: [2, 0],
+      9: [0, 1]
+    };
 
+    const birthForm = document.getElementById('birthForm');
+    const loshuGridDiv = document.getElementById('loshuGrid');
+    const driverLabel = document.getElementById('driverLabel');
+    const conductorLabel = document.getElementById('conductorLabel');
+    const kuvaLabel = document.getElementById('kuvaLabel');
+    const nameNumberLabel = document.getElementById('nameNumberLabel');
+    const historyListDiv = document.getElementById('historyList');
 
-  // Set modal title and body content based on expectedDigit
-  document.getElementById("detailModalLabel").innerHTML = `Details for ${expectedDigit}`;
-  document.getElementById("detailModalBody").innerHTML = descriptions[expectedDigit] || "No description available.";
-
-  // Show the modal using Bootstrap's Modal API
-  const modalElement = document.getElementById("detailModal");
-  const modal = new bootstrap.Modal(modalElement);
-  modal.show();
-}
-
-  // LocalStorage helpers
-  function loadHistory() {
-    const history = localStorage.getItem('birthChartHistory');
-    return history ? JSON.parse(history) : [];
-  }
-  function saveHistory(history) {
-    localStorage.setItem('birthChartHistory', JSON.stringify(history));
-  }
-  function generateKey(name, day, month, year, gender) {
-    return name.trim().toLowerCase() + "_" + day + "_" + month + "_" + year + "_" + gender;
-  }
-  // Save a record including the Name Number to localStorage
-  function saveToLocalStorage(name, day, month, year, gender, driver, conductor, kuva, nameNumber, grid) {
-    const history = loadHistory();
-    const key = generateKey(name, day, month, year, gender);
-    const entry = { key, name, day, month, year, gender, driver, conductor, kuva, nameNumber, grid };
-    const index = history.findIndex(rec => rec.key === key);
-    if (index !== -1) {
-      history[index] = entry;
-    } else {
-      history.push(entry);
-    }
-    saveHistory(history);
-    renderHistory();
-  }
-  
-  function extractNumbersFromGrid(grid) {
-    return grid.flat(2);
-  }
-  
-  // Updated renderGrid: Displays each expected number based on frequency from computed grid.
-  // If a number exists, show it repeated the number of times it occurs.
-  // If missing, show strike-through of the number in a smaller font.
-  function renderGrid(grid) {
-  const birthDigits = extractNumbersFromGrid(grid);
-  const greenRequired = [4, 5, 6];
-  const blueRequired = [2, 5, 8];
-
-  // Standard 3×3 Loshu arrangement:
-  //   4  9  2
-  //   3  5  7
-  //   8  1  6
-  const cellMap = [
-    [4, 9, 2],
-    [3, 5, 7],
-    [8, 1, 6]
-  ];
-  
-  loshuGridDiv.innerHTML = '';
-  
-  cellMap.forEach(row => {
-    row.forEach(expectedDigit => {
-      const cellDiv = document.createElement('div');
-      cellDiv.className = 'loshu-cell';
-      
-      // Count how many times the expected digit is present
-      const count = birthDigits.filter(num => num === expectedDigit).length;
-      let displayContent = "";
-      if (count > 0) {
-        displayContent = Array(count).fill(expectedDigit).join(' ') + ' <span class="zoom d-none">🔍</span>';
-      } else {
-        displayContent = `<s  class="text-danger">${expectedDigit}</s> <span class="zoom d-none">🔍</span>`;
-      }
-      cellDiv.setAttribute('data-bs-toggle', 'tooltip');
-      cellDiv.setAttribute('title', 'Click to view details');
-
-      cellDiv.innerHTML = displayContent;
-      
-      // Set tooltip title using static mapping
-      const tooltipTitles = {
-        4: "Rahu - રાહુ",
-        9: "Mars - મંગળ",
-        2: "Moon - ચંદ્ર",
-        3: "Jupiter - ગુરુ",
-        5: "Mercury - બુધ",
-        7: "Ketu - કેतु",
-        8: "Saturn - શનિ",
-        1: "Sun - સૂર્ય",
-        6: "Venus - શુક્ર"
+    function showPopup(expectedDigit) {
+      // Define detailed descriptions for each expected digit
+      const descriptions = {
+        1: `1 (Sun - સૂર્ય)<br>1 represents career, success, business, communication, and being yourself. It’s linked to the water element, kidneys and ears, colors black and dark blue, the Sun, and the middle son. Points north and is good for career.<br><br>૧ (સૂર્ય) કારકિર્દી, સફળતા, વ્યવસાય, સંચાર અને પોતાની જાત તરીકે જીવવાનું દર્શાવે છે. તે જળ તત્વ, ગુર્દા અને કાન, કાળા અને ગાઢ વાદળી રંગો, સૂર્ય અને મધ્યમ પુત્ર સાથે સંબંધિત છે. ઉત્તર દિશામાં છે અને કારકિર્દી માટે શુભ છે.`,
+        2: `2 (Moon - ચંદ્ર)<br>2 stands for love, marriage, relationships, emotions, and motherly care. It’s connected to the earth element, abdomen, and the colors pink, red, and white, representing the Moon, the mother, and the southwest direction.<br><br>૨ (ચંદ્ર) પ્રેમ, લગ્ન, સંબંધો, ભાવનાઓ અને માતૃત્વની દેખરેખનું પ્રતિનિધિત્વ કરે છે. તે પૃથ્વી તત્વ, પેટ અને ગુલાબી, લાલ અને સફેદ રંગો સાથે જોડાયેલું છે. ચંદ્ર, માતા અને દક્ષિણ પશ્ચિમ દિશાને દર્શાવે છે.`,
+        3: `3 (Jupiter - ગુરુ)<br>3 is about health, planning, imagination, family, and wisdom. It’s tied to hard wood, feet, knees, and ankles, and is associated with green and blue colors, Jupiter, the oldest son, and the east.<br><br>૩ (ગુરુ) આરોગ્ય, યોજના, કલ્પના, પરિવાર અને જ્ઞાન માટે છે. તે કઠણ લાકડું, પગ, ઘૂંટણ અને પગની કાંસળી સાથે જોડાયેલું છે. લીલા અને વાદળી રંગો, ગુરુ, મોટો પુત્ર અને પૂર્વ દિશા સાથે સંકળાયેલું છે.`,
+        4: `4 (Rahu - રાહુ)<br>4 relates to money, discipline, confidence, and power. It’s linked to soft wood, the liver, and the thicker parts of the body, representing Rahu and associated with the southeast.<br><br>૪ (રાહુ) પૈસા, અનુશાસન, આત્મવિશ્વાસ અને શક્તિ સાથે સંબંધિત છે. તે નરમ લાકડું, યકૃત અને શરીરના જાડા ભાગો સાથે જોડાયેલું છે. રાહુનું પ્રતિનિધિત્વ કરે છે અને દક્ષિણ પૂર્વ દિશા સાથે સંકળાયેલું છે.`,
+        5: `5 (Mercury - બુધ)<br>5 is for balance, stability, fortune, freedom, and mental health. It’s connected to the earth element, internal organs, and is linked with Mercury, representing the whole family and the center.<br><br>૫ (બુધ) સંતુલન, સ્થિરતા, નસીબ, સ્વતંત્રતા અને માનસિક આરોગ્ય માટે છે. તે પૃથ્વી તત્વ અને આંતરિક અંગો સાથે જોડાયેલું છે. બુધ, આખા પરિવાર અને કેન્દ્રનું પ્રતિનિધિત્વ કરે છે.`,
+        6: `6 (Venus - શુક્ર)<br>6 represents friends, travel, new beginnings, and spirituality. It’s tied to hard metal, the head, and associated with gray, black, and white colors, as well as Venus, the father, and the northwest.<br><br>૬ (શુક્ર) મિત્રો, મુસાફરી, નવા શરૂઆત અને આધ્યાત્મિકતાનું પ્રતિનિધિત્વ કરે છે. તે કઠણ ધાતુ, માથું અને ભૂખા, કાળા અને સફેદ રંગો સાથે જોડાયેલું છે. શુક્ર, પિતા અને ઉત્તર પશ્ચિમ દિશાને દર્શાવે છે.`,
+        7: `7 (Ketu - કેતુ)<br>7 focuses on children, creativity, fun, and the future. It’s linked to soft metal, the mouth and lungs, and is associated with white, silver, gray, and copper, representing the youngest daughter and the west.<br><br>૭ (केतુ) બાળકો, સર્જનાત્મકતા, આનંદ અને ભવિષ્ય પર ધ્યાન કેન્દ્રિત કરે છે. તે નરમ ધાતુ, મોઢું અને ફેફસાં સાથે જોડાયેલું છે. સફેદ, ચાંદી, ભૂખા અને તામ્ર રંગો સાથે સંકળાયેલું છે. નાની દીકરી અને પશ્ચિમ દિશાનું પ્રતિનિધિત્વ કરે છે.`,
+        8: `8 (Saturn - શનિ)<br>8 symbolizes knowledge, motivation, being organized, and spiritual growth. It’s related to the earth, hands, body weight, and is tied to blue, black, and green colors, representing Saturn, the youngest son, and the northeast.<br><br>૮ (શનિ) જ્ઞાન, પ્રેરણા, વ્યવસ્થિત હોવું અને આધ્યાત્મિક વૃદ્ધિનું પ્રતીક છે. તે પૃથ્વી, હાથ, શરીરના વજન સાથે સંબંધિત છે. વાદળી, કાળો અને લીલો રંગ શનિ, નાનો પુત્ર અને ઉત્તર પૂર્વ દિશાને દર્શાવે છે.`,
+        9: `9 (Mars - મંગળ)<br>9 stands for fame, reputation, social life, and kindness. It’s associated with fire, the heart, blood, and eyes, linked to the red color, Mars, the middle daughter, and the south.<br><br>૯ (મંગળ) યશ, પ્રતિષ્ઠા, સામાજિક જીવન અને દયાળુતાનું પ્રતિનિધિત્વ કરે છે. તે અગ્નિ, હ્રદય, લોહી અને આંખો સાથે સંકળાયેલું છે. લાલ રંગ, મંગળ, મધ્યમ દીકરી અને દક્ષિણ દિશાનું પ્રતીક છે.`
       };
-      cellDiv.title = tooltipTitles[expectedDigit];
-      
-      // Highlight cell if ALL numbers from a set are present in this cell (optional)
-      if (greenRequired.every(num => birthDigits.includes(num)) && greenRequired.includes(expectedDigit)) {
-        cellDiv.classList.add('bg-success', 'text-white');
-      } else if (blueRequired.every(num => birthDigits.includes(num)) && blueRequired.includes(expectedDigit)) {
-        cellDiv.classList.add('bg-primary', 'text-white');
-      }
-      
-      // Add click event to trigger detail popup for this expected digit
-      cellDiv.addEventListener('click', function() {
-        showPopup(expectedDigit);
-      });
-      
-      loshuGridDiv.appendChild(cellDiv);
-    });
-  });
 
-  initTolltip();
-}
 
-  
-  // Render search history in descending order (most recent first)
-  function renderHistory() {
-    const history = loadHistory();
-    historyListDiv.innerHTML = '';
-    if (history.length === 0) {
-      historyListDiv.textContent = "No search history yet.";
-      return;
+      // Set modal title and body content based on expectedDigit
+      document.getElementById("detailModalLabel").innerHTML = `Details for ${expectedDigit}`;
+      document.getElementById("detailModalBody").innerHTML = descriptions[expectedDigit] || "No description available.";
+
+      // Show the modal using Bootstrap's Modal API
+      const modalElement = document.getElementById("detailModal");
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
     }
-    const sortedHistory = history.slice().reverse();
-    const listGroup = document.createElement('div');
-    listGroup.className = 'list-group';
-    sortedHistory.forEach(record => {
-      const item = document.createElement('button');
-      item.type = 'button';
-      item.className = 'list-group-item list-group-item-action';
-      item.textContent = `${record.name} - ${record.day}/${record.month}/${record.year} (${record.gender})`;
-      item.addEventListener('click', () => {
-        loadRecord(record);
-      });
-      listGroup.appendChild(item);
-    });
-    historyListDiv.appendChild(listGroup);
-  }
-  
-  // Load a record from history into the form and display its values
-  function loadRecord(record) {
-    document.getElementById('name').value = record.name;
-    document.getElementById('day').value = record.day;
-    document.getElementById('month').value = record.month;
-    document.getElementById('year').value = record.year;
-    if(record.gender === 'male') {
-      document.getElementById('male').checked = true;
-    } else {
-      document.getElementById('female').checked = true;
+
+    // LocalStorage helpers
+    function loadHistory() {
+      const history = localStorage.getItem('birthChartHistory');
+      return history ? JSON.parse(history) : [];
     }
-    renderGrid(record.grid);
-    driverLabel.textContent = record.driver;
-    conductorLabel.textContent = record.conductor;
-    kuvaLabel.textContent = record.kuva;
-    document.getElementById('nameNumberLabel').textContent = record.nameNumber;
-  }
-  
-  birthForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const nameValue = document.getElementById('name').value.trim();
-    const dayValue = parseInt(document.getElementById('day').value, 10);
-    const monthValue = parseInt(document.getElementById('month').value, 10);
-    const yearValue = parseInt(document.getElementById('year').value, 10);
-    const gender = document.querySelector('input[name="gender"]:checked').value;
-    if (!nameValue || !dayValue || !monthValue || !yearValue || !gender) {
-      alert('Please enter Name, select Day, Month, Year, and Gender.');
-      return;
+    function saveHistory(history) {
+      localStorage.setItem('birthChartHistory', JSON.stringify(history));
     }
-    const dayString = dayValue < 10 ? '0' + dayValue : '' + dayValue;
-    const monthString = monthValue < 10 ? '0' + monthValue : '' + monthValue;
-    const yearString = '' + yearValue;
-    const combined = dayString + monthString + yearString;
-    
-    // Prepare a 3x3 grid array for the Loshu grid
-    const loshuGrid = Array.from({ length: 3 }, () =>
-      Array.from({ length: 3 }, () => [])
-    );
-    combined.split('').forEach((char) => {
-      const digit = parseInt(char, 10);
-      if (digit !== 0 && positionMap[digit]) {
-        const [row, col] = positionMap[digit];
-        loshuGrid[row][col].push(digit);
+    function generateKey(name, day, month, year, gender) {
+      return name.trim().toLowerCase() + "_" + day + "_" + month + "_" + year + "_" + gender;
+    }
+    // Save a record including the Name Number to localStorage
+    function saveToLocalStorage(name, day, month, year, gender, driver, conductor, kuva, nameNumber, grid) {
+      const history = loadHistory();
+      const key = generateKey(name, day, month, year, gender);
+      const entry = { key, name, day, month, year, gender, driver, conductor, kuva, nameNumber, grid };
+      const index = history.findIndex(rec => rec.key === key);
+      if (index !== -1) {
+        history[index] = entry;
+      } else {
+        history.push(entry);
       }
-    });
-    
-    const driver = digitalRoot(dayValue);
-    const sumDigits = combined.split('').reduce((sum, digit) => sum + parseInt(digit, 10), 0);
-    const conductor = digitalRoot(sumDigits);
-    const yearDigital = digitalRoot(yearValue);
-    let kuvaCalc;
-    if (gender === 'male') {
-      kuvaCalc = digitalRoot(11 - yearDigital);
-    } else {
-      kuvaCalc = digitalRoot(yearDigital + 4);
+      saveHistory(history);
+      renderHistory();
     }
-    
-    // Process computed values into the grid
-    const computedValues = [driver, conductor, kuvaCalc];
-    computedValues.forEach(value => {
-      value.toString().split('').forEach(char => {
+
+    function extractNumbersFromGrid(grid) {
+      return grid.flat(2);
+    }
+
+    // Updated renderGrid: Displays each expected number based on frequency from computed grid.
+    // If a number exists, show it repeated the number of times it occurs.
+    // If missing, show strike-through of the number in a smaller font.
+    function renderGrid(grid) {
+      const birthDigits = extractNumbersFromGrid(grid);
+      const greenRequired = [4, 5, 6];
+      const blueRequired = [2, 5, 8];
+
+      // Standard 3×3 Loshu arrangement:
+      //   4  9  2
+      //   3  5  7
+      //   8  1  6
+      const cellMap = [
+        [4, 9, 2],
+        [3, 5, 7],
+        [8, 1, 6]
+      ];
+
+      loshuGridDiv.innerHTML = '';
+
+      cellMap.forEach(row => {
+        row.forEach(expectedDigit => {
+          const cellDiv = document.createElement('div');
+          cellDiv.className = 'loshu-cell';
+
+          // Count how many times the expected digit is present
+          const count = birthDigits.filter(num => num === expectedDigit).length;
+          let displayContent = "";
+          if (count > 0) {
+            displayContent = Array(count).fill(expectedDigit).join(' ') + ' <span class="zoom d-none">🔍</span>';
+          } else {
+            displayContent = `<s  class="text-danger">${expectedDigit}</s> <span class="zoom d-none">🔍</span>`;
+          }
+          cellDiv.setAttribute('data-bs-toggle', 'tooltip');
+          cellDiv.setAttribute('title', 'Click to view details');
+
+          cellDiv.innerHTML = displayContent;
+
+          // Set tooltip title using static mapping
+          const tooltipTitles = {
+            4: "Rahu - રાહુ",
+            9: "Mars - મંગળ",
+            2: "Moon - ચંદ્ર",
+            3: "Jupiter - ગુરુ",
+            5: "Mercury - બુધ",
+            7: "Ketu - કેतु",
+            8: "Saturn - શનિ",
+            1: "Sun - સૂર્ય",
+            6: "Venus - શુક્ર"
+          };
+          cellDiv.title = tooltipTitles[expectedDigit];
+
+          // Highlight cell if ALL numbers from a set are present in this cell (optional)
+          if (greenRequired.every(num => birthDigits.includes(num)) && greenRequired.includes(expectedDigit)) {
+            cellDiv.classList.add('bg-success', 'text-white');
+          } else if (blueRequired.every(num => birthDigits.includes(num)) && blueRequired.includes(expectedDigit)) {
+            cellDiv.classList.add('bg-primary', 'text-white');
+          }
+
+          // Add click event to trigger detail popup for this expected digit
+          cellDiv.addEventListener('click', function () {
+            showPopup(expectedDigit);
+          });
+
+          loshuGridDiv.appendChild(cellDiv);
+        });
+      });
+
+      initTolltip();
+
+      // After rendering the grid, highlight remedy sections based on missing/present numbers
+      for (let i = 1; i <= 9; i++) {
+        const accordionItem = document.querySelector(`#collapse${i}`)?.closest('.accordion-item');
+        if (!accordionItem) continue;
+
+        if (birthDigits.includes(i)) {
+          accordionItem.classList.remove('missing-remedy');
+          accordionItem.classList.add('present-remedy');
+        } else {
+          accordionItem.classList.remove('present-remedy');
+          accordionItem.classList.add('missing-remedy');
+        }
+      }
+
+    }
+
+
+    // Render search history in descending order (most recent first)
+    function renderHistory() {
+      const history = loadHistory();
+      historyListDiv.innerHTML = '';
+      if (history.length === 0) {
+        historyListDiv.textContent = "No search history yet.";
+        return;
+      }
+      const sortedHistory = history.slice().reverse();
+      const listGroup = document.createElement('div');
+      listGroup.className = 'list-group';
+      sortedHistory.forEach(record => {
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'list-group-item list-group-item-action';
+        item.textContent = `${record.name} - ${record.day}/${record.month}/${record.year} (${record.gender})`;
+        item.addEventListener('click', () => {
+          loadRecord(record);
+        });
+        listGroup.appendChild(item);
+      });
+      historyListDiv.appendChild(listGroup);
+    }
+
+    // Load a record from history into the form and display its values
+    function loadRecord(record) {
+      document.getElementById('name').value = record.name;
+      document.getElementById('day').value = record.day;
+      document.getElementById('month').value = record.month;
+      document.getElementById('year').value = record.year;
+      if (record.gender === 'male') {
+        document.getElementById('male').checked = true;
+      } else {
+        document.getElementById('female').checked = true;
+      }
+      renderGrid(record.grid);
+      driverLabel.textContent = record.driver;
+      conductorLabel.textContent = record.conductor;
+      kuvaLabel.textContent = record.kuva;
+      document.getElementById('nameNumberLabel').textContent = record.nameNumber;
+    }
+
+    birthForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameValue = document.getElementById('name').value.trim();
+      const dayValue = parseInt(document.getElementById('day').value, 10);
+      const monthValue = parseInt(document.getElementById('month').value, 10);
+      const yearValue = parseInt(document.getElementById('year').value, 10);
+      const gender = document.querySelector('input[name="gender"]:checked').value;
+      if (!nameValue || !dayValue || !monthValue || !yearValue || !gender) {
+        alert('Please enter Name, select Day, Month, Year, and Gender.');
+        return;
+      }
+      const dayString = dayValue < 10 ? '0' + dayValue : '' + dayValue;
+      const monthString = monthValue < 10 ? '0' + monthValue : '' + monthValue;
+      const yearString = '' + yearValue;
+      const combined = dayString + monthString + yearString;
+
+      // Prepare a 3x3 grid array for the Loshu grid
+      const loshuGrid = Array.from({ length: 3 }, () =>
+        Array.from({ length: 3 }, () => [])
+      );
+      combined.split('').forEach((char) => {
         const digit = parseInt(char, 10);
         if (digit !== 0 && positionMap[digit]) {
           const [row, col] = positionMap[digit];
           loshuGrid[row][col].push(digit);
         }
       });
+
+      const driver = digitalRoot(dayValue);
+      const sumDigits = combined.split('').reduce((sum, digit) => sum + parseInt(digit, 10), 0);
+      const conductor = digitalRoot(sumDigits);
+      const yearDigital = digitalRoot(yearValue);
+      let kuvaCalc;
+      if (gender === 'male') {
+        kuvaCalc = digitalRoot(11 - yearDigital);
+      } else {
+        kuvaCalc = digitalRoot(yearDigital + 4);
+      }
+
+      // Process computed values into the grid
+      const computedValues = [driver, conductor, kuvaCalc];
+      computedValues.forEach(value => {
+        value.toString().split('').forEach(char => {
+          const digit = parseInt(char, 10);
+          if (digit !== 0 && positionMap[digit]) {
+            const [row, col] = positionMap[digit];
+            loshuGrid[row][col].push(digit);
+          }
+        });
+      });
+
+      // Compute the Name Number from the input name
+      const nameNumber = computeNameNumber(nameValue);
+
+      renderGrid(loshuGrid);
+      driverLabel.textContent = driver;
+      conductorLabel.textContent = conductor;
+      kuvaLabel.textContent = kuvaCalc;
+      document.getElementById('nameNumberLabel').textContent = nameNumber;
+
+      // Save record (including nameNumber) to localStorage
+      saveToLocalStorage(nameValue, dayValue, monthValue, yearValue, gender, driver, conductor, kuvaCalc, nameNumber, loshuGrid);
     });
-    
-    // Compute the Name Number from the input name
-    const nameNumber = computeNameNumber(nameValue);
-    
-    renderGrid(loshuGrid);
-    driverLabel.textContent = driver;
-    conductorLabel.textContent = conductor;
-    kuvaLabel.textContent = kuvaCalc;
-    document.getElementById('nameNumberLabel').textContent = nameNumber;
-    
-    // Save record (including nameNumber) to localStorage
-    saveToLocalStorage(nameValue, dayValue, monthValue, yearValue, gender, driver, conductor, kuvaCalc, nameNumber, loshuGrid);
-  });
 
-  document.querySelector('a[href="#historyContainer"]').addEventListener('click', function (e) {
-  const target = document.getElementById('historyContainer');
-  
-  // Add the highlight class
-  target.classList.add('highlight-section');
+    document.querySelector('a[href="#historyContainer"]').addEventListener('click', function (e) {
+      const target = document.getElementById('historyContainer');
 
-  // Remove the class after 2 seconds
-  setTimeout(() => {
-    target.classList.remove('highlight-section');
-  }, 2000);
-});
+      // Add the highlight class
+      target.classList.add('highlight-section');
 
-</script>
+      // Remove the class after 2 seconds
+      setTimeout(() => {
+        target.classList.remove('highlight-section');
+      }, 2000);
+    });
+
+  </script>
 </body>
+
 </html>
